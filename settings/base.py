@@ -30,12 +30,24 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # My Apps -------------
+    # 'items',
+    # 'users',
+    # 'review',
+    # 'payment',
+    # 'interest',
+    # Default apps --------
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Additional apps ------
+    'django.contrib.humanize',
+    # External apps --------
+    'haystack',
+    'bootstrap3',
 ]
 
 MIDDLEWARE = [
@@ -53,7 +65,13 @@ ROOT_URLCONF = 'bazaar.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'users/templates'),
+                 os.path.join(BASE_DIR, 'review/templates'),
+                 os.path.join(BASE_DIR, 'search/templates'),
+                 os.path.join(BASE_DIR, 'commons/templates'),
+                 os.path.join(BASE_DIR, 'payment/templates'),
+                 os.path.join(BASE_DIR, 'interest/templates'),
+                 ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -113,3 +131,34 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# My adds -----------------------
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+AUTH_USER_MODEL = 'users.User'
+# Don't mess with this settings...
+# unless you want to mess with your database
+
+REGISTRATION_OPEN = True
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+
+BOOTSTRAP3 = {}
+
+HAYSTACK_CONNECTIONS = {
+    'default': {'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+                'PATH': os.path.join(BASE_DIR, 'search/whoosh_index'),
+                },
+}
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 5
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'testing@example.com'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+EMAIL_PORT = 1025
