@@ -7,9 +7,9 @@ import django_heroku
 from .base import *
 
 MIDDLEWARE = [
-    # I added whitenoise here
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    # I added whitenoise here
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -32,12 +32,8 @@ ALLOWED_HOSTS = ['the-great-bazaar.herokuapp.com',
 # Set debug to False
 DEBUG = False
 
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media")
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
 # Static asset configuration
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 django_heroku.settings(locals())
