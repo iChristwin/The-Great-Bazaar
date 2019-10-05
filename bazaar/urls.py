@@ -27,7 +27,6 @@ from commons.views import home
 from search.views import BazaarSearch
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='about.html'), name='about'),
     path('', home, name='home'),
     path('welcome/', BazaarSearch.as_view(), name='welcome'),
     path('<locale>/signup/', SignUpView.as_view(), name='signup'),
