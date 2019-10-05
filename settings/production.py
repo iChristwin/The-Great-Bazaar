@@ -27,7 +27,9 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['the-great-bazaar.herokuapp.com']
 
 # Set debug to False
-DEBUG = True
+DEBUG = os.environ['DEBUG']
+if DEBUG == '':
+    DEBUG = False
 
 # Static asset configuration
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
