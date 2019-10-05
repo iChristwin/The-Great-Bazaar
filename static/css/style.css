@@ -1,0 +1,252 @@
+/* static/css/base.css */
+
+body {
+    color: white;
+    background-image: url(/static/imgs/default.jpg);
+    background-size: cover;
+    /* background-color: rgb(5, 15, 25); */
+    }
+
+header {
+    background: rgb(5, 15, 25,)
+    }
+
+header ul {
+    padding: 0.9% 0%;
+    margin: 0;
+    }
+
+header a, header li {
+    padding: 0% 0%;
+    }
+
+fieldset {
+    width: auto;
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color: rgb(0,0,0,0.5);
+    border-radius: 20px;
+    padding: 1%;
+    padding-left: 5%;
+    text-align: left;
+    }
+
+legend {
+    border: 1px solid gray;
+    border-radius: 10px;
+    color: #fff;
+    width: auto;
+    margin-left: 0%;
+    background-color: rgb(0,0,0,0.5);
+    padding: 2%;
+    padding-bottom: 1%;
+    text-align: center;
+    text-transform: uppercase;
+    }
+
+.items {
+    font-size: 11px;
+    text-align: center;
+    font-weight: bold;
+    background: yellow;
+    }
+
+.item {
+    background-image: url(/static/imgs/default.jpg);
+    background-size: cover;
+    }
+
+.store {
+    background-image: url(/static/imgs/stores.jpg);
+    background-size: cover;
+    }
+
+.item a {
+    color: yellow;
+    }
+
+.item legend, .item .button {
+    border: 1px solid yellow;
+    }
+
+.jobs {
+    font-size: 11px;
+    text-align: center;
+    font-weight: bold;
+    background: rgb(0, 200, 50);
+    }
+
+.job a {
+    color: rgb(0, 255, 50);
+    }
+
+.job fieldset, .job legend {
+    border: 1px solid rgb(0, 255, 50);
+    }
+
+.lodges {
+    font-size: 11px;
+    text-align: center;
+    font-weight: bold;
+    background: rgb(100, 80, 225);
+    }
+
+.lodge a {
+    color: rgb(100, 80, 225);
+    }
+
+.lodge fieldset, .lodge legend {
+    border: 1px solid rgb(100, 80, 225);
+    }
+
+.stores {
+    font-size: 11px;
+    text-align: center;
+    font-weight: bold;
+    background: rgb(255, 80, 255);
+    }
+
+.store a {
+    color: rgb(255, 80, 255);
+    }
+
+.store fieldset, .store legend {
+    border: 1px solid rgb(255, 80, 255);
+    }
+
+
+.menu a {
+    color: rgb(30, 40, 50);
+    }
+
+.nowrap {
+    white-space: nowrap;
+    }
+
+a {
+    color: yellow
+    }
+
+a:hover{
+    color: green;
+    }
+
+section#billboard .wrap-headline {
+    position: relative;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    }
+
+section#billboard h1,
+section#billboard h2 {
+    color: #FFF;
+    }
+
+section#billboard h2 {
+    font-size: 2.5rem;
+    }
+
+hr {
+    width: 70%;
+    }
+
+section#billboard .btn-default {
+    background-color: rgba(255, 255, 255, 0.5);
+    }
+
+.jumbotron {
+    background-color: rgba(0, 0, 0, 0.4);
+    margin-bottom: 0%
+    }
+
+.navbar {
+    background-color: rgb(25,35,45);
+    }
+
+.lil {
+    font-size: 15px;
+    }
+
+.row {
+    text-align: center;
+    }
+
+.field-left {
+    margin-right: auto;
+    }
+
+.field-right {
+    display: flex;
+    margin-bottom: 2rem;
+    padding-top: 2rem;
+    }
+
+.loop-entry {
+    font-size: 16px;
+    margin-bottom: 2rem;
+    }
+
+.loop-entry h2 {
+    margin: 0.5rem 0;
+    }
+
+.loop-entry h2 a,
+.loop-entry h2 a:visited {
+    color: blue;
+    text-decoration: none;
+    }
+
+.loop-entry p {
+    margin: 0;
+    font-weight: 400;
+    }
+
+.btn a:hover {
+    color: rgb(15,25,35);
+    }
+
+.btn a:visited:hover {
+    color: rgb(15,25,35);
+    }
+
+.btn a:visited {
+    color: rgb(15,25,35);
+    text-decoration: none;
+    }
+
+.button {
+    border: 1px solid gray;
+    border-radius: 100px;
+    width: auto;
+    background-color: rgb(0,0,0,0.5);
+    padding: 0.7% 1.2%;
+    }
+
+.base {
+    border-radius: 25px;
+    font-size: 13px;
+    color: rgba(0,0,0,0.8);
+    text-align: center;
+    width: auto;
+    margin-left: 29%;
+    margin-right: 29%;
+    background-color: rgba(0,0,0,0);
+    padding: 0.5% 0.5%;
+    }
+
+.search {
+    width: auto;
+    margin-left: 8%;
+    margin-right: 8%;
+   }
+
+.sub-text {
+    color: rgba(255, 255, 255, 0.4);
+   }
+
+.top {
+    margin-left: 0%;
+    margin-right: 0%;
+    background-color: rgb(25,35,45);
+    text-align: center;
+    }
