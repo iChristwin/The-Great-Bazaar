@@ -24,7 +24,10 @@ DATABASES['default'] = dj_database_url.config()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow specific host headers
-ALLOWED_HOSTS = ['the-great-bazaar.herokuapp.com']
+ALLOWED_HOSTS = ['the-great-bazaar.herokuapp.com',
+                 '127.0.0.1', "localhost",
+                 "0.0.0.0", ".herokuapp.com",
+                 ]
 
 # Set debug to False
 DEBUG = False
