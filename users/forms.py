@@ -7,8 +7,9 @@ from .models import User
 class UserForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = ('username',)
-        labels = {'username': 'Mobile Number (with country code)', }
+        fields = ('username', 'acc_no',)
+        labels = {'username': 'Mobile Number (with country code)',
+                  'acc_no': 'Bank Account Number'}
 
 
 class ProfileForm(forms.ModelForm):

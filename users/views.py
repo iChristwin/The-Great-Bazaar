@@ -57,6 +57,8 @@ class SignUpView(CreateView):
             user.save()
             login(self.request, user)
             return redirect('user:update', pk=user.pk)
+        else:
+            return response
 
 
 class ProfileDetails(DetailView):
