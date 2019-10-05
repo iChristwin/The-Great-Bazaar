@@ -32,8 +32,12 @@ ALLOWED_HOSTS = ['the-great-bazaar.herokuapp.com',
 # Set debug to False
 DEBUG = False
 
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media")
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+
 # Static asset configuration
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 django_heroku.settings(locals())
