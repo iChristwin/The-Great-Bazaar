@@ -1,0 +1,38 @@
+
+{% extends 'items/details.html' %}
+{% load bootstrap3 %}
+{% block title %}
+    {{ block.super }}
+{% endblock %}
+{% block more %}
+    <fieldset>
+        <a href="{% url 'user:details' pk=offer.owner.pk %}">
+            <h4>#{{ offer.owner.alias }}</h4>
+        </a>
+        <p>
+        <h4 style="font-style:italic; font-weight:bold; color: green">**Accepted**</h4>
+        <b>Offer:</b> {{ offer.offer }}
+        <br>
+        {% if offer.collectdeposit.received %}
+        <h4 style="font-style:italic; font-weight:bold; color: Gold">**Received Payment**</h4>
+        {% endif %}
+        <small class="sub-text text-left">[ {{ offer.last_modified }} ]</small>
+        <p class="text-right">
+            {% if item.owner == user or offer.owner == user %}
+            <a class="button" href="{% url 'offer:cancel' pk=offer.pk%}">
+                Cancel acceptance
+            </a>
+            {% endif %}
+            {% if offer.owner == user %}
+            <a class="button" href="{% url 'payment:proceed' pk=offer.pk bank='bank' %}">
+                Proceed Transaction
+            </a>
+            {% endif %}
+            {% if item.owner == user %}
+            <a class="button" href="{% url 'payment:cashout' pk=offer.pk %}">
+                Setup cashout
+            </a>
+            {% endif %}
+        </p>
+    </fieldset><br>
+{% endblock more %}

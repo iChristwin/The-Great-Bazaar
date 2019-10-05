@@ -1,0 +1,35 @@
+{% extends 'search/search.html' %}
+{% load static %}
+{% block title %}
+    {{ block.super }}
+{% endblock title %}
+{% block banner %}
+    {% if query %}
+    {% else %}
+        <div class="jumbotron">
+            <div class="container">
+                <div class="row">
+                    {% block billboard %}
+                    <div class="warp-headline">
+                        <h1 class="h3 text-center">Welcome to the Great<br>
+                            <strong>Bazaar</strong>
+                        </h1>
+                        <h2 class="text-center"><small>~ Campus Edition ~</small></h2>
+                        <hr>
+                        <ul class="list-inline list-unstyled text-center">
+                            <a class="btn btn-success" href="{% url 'login' %}" role="button">Login</a>
+                            <a class="btn btn-warning" href="{% url 'join' %}" role="button">Signup</a>
+                        </ul>
+                    </div>
+                    {% endblock billboard %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock banner %}
+{% block dashboard %}
+{% endblock dashboard %}
+{% block content %}
+    {{ block.super }}
+{% endblock content %}
+

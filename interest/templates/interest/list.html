@@ -1,0 +1,41 @@
+
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% load static %}
+{% block title %}
+    My Interests - {{ block.super }}
+{% endblock %}
+{% block header %}
+    {{ block.super }}
+{% endblock header %}
+{% block content %}
+{% if user.is_authenticated %}
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <br><br>
+            <text class="h2 button">My Interests</text>
+            {% if offers %}
+                {% for offer in offers %}
+                    <hr>
+                        <h3 style="text-transform:uppercase;">
+                            <a href="{% url 'item:details' pk=offer.item.pk %}">
+                                {{ offer.item.name }}
+                            </a>
+                        </h3>
+                        <b>Offer Accepted:</b>
+                        {% if offer.accepted %}
+                        <span class="glyphicon glyphicon-ok" style="color:green;" aria-hidden="true"></span>
+                        {% else %}
+                        <span class="glyphicon glyphicon-remove" style="color:red;"  aria-hidden="true"></span>
+                        {% endif %}
+                <br><br>
+                {% endfor %}
+            <hr>
+            {% else %}
+            <hr>
+            No Interests to show!
+            {% endif %}
+        </div>
+    </div>
+{% endif %}
+{% endblock content %}

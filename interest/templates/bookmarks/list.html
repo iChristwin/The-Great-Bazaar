@@ -1,0 +1,50 @@
+
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% load static %}
+{% block title %}
+    My Bookmarks - {{ block.super }}
+{% endblock %}
+{% block header %}
+    {{ block.super }}
+{% endblock header %}
+{% block content %}
+{% if user.is_authenticated %}
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <br><br>
+            <text class="h2 button">My Bookmarks</text>
+            {% if bookmarks %}
+                {% for item in bookmarks.bookmarked.all %}
+                <hr>
+                <h3 style="text-transform:uppercase;">
+                    <a href="{% url 'item:details' pk=item.pk %}">
+                        {{ item.name }}
+                    </a>
+                    <a href="{% url 'bookmark:remove' pk=item.pk %}" class="button h5">
+                        <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>-
+                    </a>
+                    <br>
+                </h3>
+                <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                <b>Category: </b>{{ item.category }}<br>
+                <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+                <b>Interest: </b>{{ item.offer_set.count }}
+                Offer{{ item.offer_set.count|pluralize }}<br>
+                <b>Available: </b>
+                {% if item.available %}
+                <span class="glyphicon glyphicon-ok" style="color:green;" aria-hidden="true"></span>
+                {% else %}
+                <span class="glyphicon glyphicon-remove" style="color:red;"  aria-hidden="true"></span>
+                {% endif %}
+                <br>
+                {% endfor %}
+            <hr>
+            {% else %}
+            <hr>
+            No Bookmarks to show!
+            {% endif %}
+        </div>
+    </div>
+{% endif %}
+{% endblock content %}

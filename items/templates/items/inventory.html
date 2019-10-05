@@ -1,0 +1,42 @@
+
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block title %} My Inventory - {{ block.super }}{% endblock %}
+{% block header %}
+    {{ block.super }}
+{% endblock header %}
+{% block content %}
+{% if user.is_authenticated %}
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+        <br><br>
+            <a href="{% url 'item:add' %}" class="button pull-left h4">
+                <strong>+</strong>Add Item
+            </a>
+        <text class="h2 button">My Inventory</text>
+        {% if items %}
+            {% for item in items %}
+                <fieldset>
+                    <a href="{% url 'item:details' pk=item.pk %}">
+                        {# <img src="{{ item.image.url }}" alt="" /> #}
+                    </a>
+                    <a class="h3" href="{% url 'item:details' pk=item.pk %}" style="text-transform:uppercase;">
+                        {{ item.name }}
+                    </a>
+                    <p>
+                        {{ item.interest_set.count }}
+                        interest{{ item.interest_set.count|pluralize }}
+                        <br>
+                    </p>
+                </fieldset>
+                <br><br>
+            {% endfor %}
+        <hr>
+        {% else %}
+        <hr>
+        No Items to show!
+        {% endif %}
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

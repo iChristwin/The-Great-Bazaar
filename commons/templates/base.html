@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+{% load static %}
+{% load humanize %}
+{% load bootstrap3 %}
+    <head>
+        <title>
+            {% block title %}
+            Go.xyz
+            {% endblock %}
+        </title>
+        <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    </head>
+    <body class="{{ user.view }}">
+        <header>
+            {% block ribbon %}
+                <div class="row">
+                    <div class="container">
+                    {% if user.is_authenticated %}
+                    <a class="brand pull-left h4" href="#"><strong>{{ user.view.upper }}S</strong></a>
+                    {% endif %}
+                        {% block search %}
+                        {% endblock search %}
+                    <ul class="list-inline list-unstyled pull-right small">
+                        {% if user.is_authenticated %}
+                        <li><a href="{{ user.get_home_url }}">
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                            Home</a></li>
+                        <li><a href="{{ user.get_search_url }}">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            Search</a></li>
+                        <li><a href="{% url 'logout' %}">
+                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                            Logout</a></li>
+                        <li><a href="{% url 'user:details' pk=user.pk %}">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            Profile</a></li>
+                        {% else %}
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="{% url 'join' %}">Signup</a></li>
+                        {% endif %}
+                    </ul>
+                    </div>
+                </div>
+            {% endblock ribbon %}
+        </header>
+        <section id="billboard">
+            {% block banner %}
+            <div class="jumbotron">
+                <div class="container">
+                    <div class="row">
+                        {% block billboard %}
+                            {% if user.is_authenticated %}
+                            <h1 class="h3 pull-right">
+                                <a href="{% url 'user:details' pk=user.pk %}">#{{ user.alias }}</a>
+                                <br>
+                                <text class="h4 pull-right sub-text">{{ user.username }}</text>
+                            </h1>
+                            {% endif %}
+                        {% endblock billboard %}
+                    </div>
+                </div>
+            </div>
+            {% endblock banner %}
+        </section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-3 col-md-2">
+                </div>
+                {% if user.is_authenticated %}
+                {% block menu %}
+                <div class="col-xs-9 col-md-10 round">
+                </div>
+                {% endblock menu %}
+                {% endif %}
+            </div>
+        </div>
+        {% block body %}
+        <div class="row">
+            {% block dashboard %}
+            <div class="col-xs-2 col-md-2">
+            </div>
+            {% endblock dashboard %}
+            {% block room %}
+            <div class="col-xs-10 col-md-10">
+                <div class="container-fluid text-left">
+                    {% block content %}
+                    {% endblock content %}
+                </div>
+            </div>
+            {% endblock room %}
+        </div>
+        {% endblock body %}
+        <script src="{% static 'bootstrap/js/jquery-3.4.1.min.js' %}"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    </body>
+</html>

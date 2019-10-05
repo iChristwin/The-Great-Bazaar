@@ -1,0 +1,129 @@
+
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block title %}
+    {{ block.super }}
+{% endblock %}
+{% block room %}
+    <br><br>
+    <div class="row clearfix">
+        <div class="col-md-12 col-sm-12 column">
+            <fieldset>
+                {% if item.available == False %}
+                <h3 style="font-weight:bold; color: red">**SOLD**</h3>
+                {% endif %}
+                <legend class="h2">{{ item.name }}</legend>
+                <div class="row">
+                    <img src="{{ item.front_photo.url }}" alt="" class="img-rounded img-responsive col-md-6 col-sm-6"/>
+                    <img src="{{ item.back_photo.url }}" alt="" class="img-rounded img-responsive col-md-6 col-sm-6"/>
+                </div>
+                <a href="{% url 'user:details' pk=item.owner.pk %}">
+                    <strong style="font-size: 2rem;">Owner</strong><br>
+                </a>
+                {% if user.is_authenticated and user != item.owner %}
+                <a href="{% url 'bookmark:add' pk=item.pk %}" class="pull-right button h1">
+                    <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>+
+                </a>
+                {% endif %}
+                <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
+                <b>Gender: </b>{{ item.owner.gender.capitalize }}<br>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <b>Rating: </b>{{ item.owner.userrating.current_rating }} Star{{ profile.userrating|pluralize }}
+                {% if item.owner.userrating.current_rating == 0.0 %}
+                <small style="color:red;"><strong>New User</strong></small>
+                {% endif %}<br>
+                <text style="font-size: 13px;">
+                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                        <b>Last seen</b>: {{ item.owner.last_login }}
+                </text><br><br>
+                <strong style="font-size: 2rem; color: orange">Item</strong><br>
+                {% if user.is_authenticated is False %}
+                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                <b>Location: </b>{{ item.owner.locale.upper }}<br>
+                {% endif %}
+                <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                <b>Category: </b>{{ item.category }}<br>
+                <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+                <b>Interest: </b>{{ item.offer_set.count }}
+                Offer{{ item.offer_set.count|pluralize }}<br>
+                <br>
+                <strong style="font-size: 2rem; color: orange">Descriptions</strong>
+                <blockquote class="h5">
+                    {% for line in item.get_description %}
+                        {{ line }}<br>
+                    {% endfor %}
+                </blockquote>
+                <p class="text-right">
+                {% if item.owner == user %}
+                    <a class="button" href="{% url 'item:update' pk=item.pk %}">Update</a>
+                    <a class="button" href="{% url 'item:remove' pk=item.pk %}">Remove</a>
+                {% else %}
+                    {% if user.is_authenticated and item.available %}
+                    <a class="button" href="{% url 'item:interested' pk=item.pk %}">
+                        I'm Interested
+                    </a>
+                    {% endif %}
+                </p>
+                {% endif %}
+            </fieldset>
+            <br><br>
+            {% block more %}
+            {% if offers %}
+                <text class="h3 button">Offers on this Item</text><br><br>
+                {% for offer in offers %}
+                <fieldset>
+                    <a href="{% url 'user:details' pk=offer.owner.pk %}">
+                        <h4>#{{ offer.owner.alias }}</h4>
+                    </a>
+                    <p>
+                        <b>Offer:</b> {{ offer.offer }} NGN<br>
+                        <small class="sub-text text-left">[ {{ offer.last_modified }} ]</small>
+                    </p>
+                    <p class="text-right">
+                        {% if item.owner == user %}
+                        <a class="button" href="{% url 'offer:accept' pk=offer.pk %}">
+                            Accept
+                        </a>
+                        <a class="button" href="{% url 'bargain:add' pk=offer.pk%}">
+                            Bargain
+                        </a>
+                        <br>
+                        {% endif %}
+                        {% if offer.owner == user %}
+                        <a class="button" href="{% url 'offer:update' pk=offer.pk %}">
+                            Update
+                        </a>
+                        <a class="button" href="{% url 'offer:delete' pk=offer.pk %}">
+                            Delete
+                        </a>
+                        {% endif %}
+                    </p>
+                        {% if offer.bargain %}
+                        <hr style="width:100%">
+                        <blockquote class="pull-left h5">
+                            <b style="color: orange">Seller's Bargain: </b>
+                            {{ offer.bargain.bargain }} NGN
+                            <br><br>
+                            {% if offer.owner == user %}
+                            <a class="button" href="{% url 'bargain:accept' pk=offer.pk %}">
+                                Accept
+                            </a><br>
+                            {% endif %}
+                            {% if offer.bargain.seller == user %}
+                            <a class="button" href="{% url 'bargain:update' pk=offer.bargain.pk %}">
+                                Update
+                            </a>
+                            <a class="button" href="{% url 'bargain:delete' pk=offer.bargain.pk %}">
+                                Delete
+                            </a><br>
+                            {% endif %}
+                        </blockquote>
+                        {% endif %}
+                </fieldset>
+                <br>
+                {% endfor %}
+            {% endif %}
+            {% endblock more %}
+        </div>
+    </div>
+{% endblock room %}

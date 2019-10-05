@@ -1,0 +1,20 @@
+
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block title %}
+    {{ block.super }}
+{% endblock title %}
+{% block form %}
+    <br>
+    <form role="form" action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        {% bootstrap_form form show_label=False %}
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">
+                {% block label %}
+                    Done
+                {% endblock label %}
+            </button>
+        {% endbuttons %}
+    </form>
+{% endblock form %}
