@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # My Apps -------------
     # 'items',
-    # 'users',
+    'users',
     # 'review',
     # 'payment',
     # 'interest',
@@ -139,7 +139,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-# AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'users.User'
 # Don't mess with this settings...
 # unless you want to mess with your database
 
@@ -149,11 +149,12 @@ LOGOUT_REDIRECT_URL = 'home'
 
 BOOTSTRAP3 = {}
 
+
 HAYSTACK_CONNECTIONS = {
     'default': {'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
                 'PATH': os.path.join(BASE_DIR, 'search/whoosh_index'),
                 },
-}
+    }
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 5
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

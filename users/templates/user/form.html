@@ -1,0 +1,21 @@
+
+{% extends 'forms.html' %}
+{% load bootstrap3 %}
+{% block title %}
+     - {{ block.super }}
+{% endblock %}
+{% block billboard %}
+    <h1>Update Profile</h1>
+{% endblock billboard %}
+{% block content %}
+    <text>
+        <h3>Help us give you the Best!</h3>
+        provide a profile we can work with
+    </text>
+    <br><br>
+    {% if user.is_authenticated %}
+        {% block form %}
+            {{ block.super }}
+        {% endblock form %}
+    {% endif %}
+{% endblock content %}
