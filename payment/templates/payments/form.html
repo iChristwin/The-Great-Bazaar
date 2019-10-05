@@ -1,0 +1,12 @@
+
+{% extends 'forms.html' %}
+{% block title %}
+    Deposit Bargain - {{ block.super }}
+{% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+    {% block form %}
+        {{ block.super }}
+    {% endblock form %}
+    {% endif %}
+{% endblock content%}

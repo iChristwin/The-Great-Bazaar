@@ -1,0 +1,18 @@
+
+
+{% extends 'forms.html' %}
+{% block title %}
+    Proceed to Transfer - {{ block.super }}
+{% endblock %}
+{% block content %}
+    <h2>Proceed to Transfer</h2>
+    Transfer Bargained Funds to the account provided below<br><br>
+    <h2>Account Number: {{ acc.number }}<br>
+    Account Name: {{ acc.name }}</h2>
+    <br><br>
+    <fieldset><small>We would be in custody of your funds<br>
+    They act as guarantee for exchange of goods <br>
+    But would not be transferred until your Confirm a satisfactory purchase <br>
+    ...thus, you can get your money back!
+    </small></fieldset>
+{% endblock content%}

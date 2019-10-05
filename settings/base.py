@@ -31,11 +31,11 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # My Apps -------------
-    # 'items',
+    'items',
     'users',
-    # 'review',
-    # 'payment',
-    # 'interest',
+    'review',
+    'payment',
+    'interest',
     # Default apps --------
     'django.contrib.admin',
     'django.contrib.auth',
