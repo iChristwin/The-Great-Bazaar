@@ -9,7 +9,7 @@ from .base import *
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     # I added whitenoise here
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -27,11 +27,9 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['the-great-bazaar.herokuapp.com']
 
 # Set debug to False
-DEBUG = os.environ['DEBUG']
-if DEBUG == '':
-    DEBUG = False
+DEBUG = False
 
 # Static asset configuration
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 django_heroku.settings(locals())
