@@ -44,20 +44,8 @@ legend {
     text-transform: uppercase;
     }
 
-.items {
-    font-size: 11px;
-    text-align: center;
-    font-weight: bold;
-    background: yellow;
-    }
-
 .item {
     background-image: url(/static/imgs/default.jpg);
-    background-size: cover;
-    }
-
-.store {
-    background-image: url(/static/imgs/stores.jpg);
     background-size: cover;
     }
 
@@ -69,54 +57,17 @@ legend {
     border: 1px solid yellow;
     }
 
-.jobs {
-    font-size: 11px;
-    text-align: center;
-    font-weight: bold;
-    background: rgb(0, 200, 50);
-    }
-
-.job a {
-    color: rgb(0, 255, 50);
-    }
-
-.job fieldset, .job legend {
-    border: 1px solid rgb(0, 255, 50);
-    }
-
-.lodges {
-    font-size: 11px;
-    text-align: center;
-    font-weight: bold;
-    background: rgb(100, 80, 225);
+.lodge {
+    background-image: url(/static/imgs/stores.jpg);
+    background-size: cover;
     }
 
 .lodge a {
     color: rgb(100, 80, 225);
     }
 
-.lodge fieldset, .lodge legend {
+.lodge legend, .lodge .button {
     border: 1px solid rgb(100, 80, 225);
-    }
-
-.stores {
-    font-size: 11px;
-    text-align: center;
-    font-weight: bold;
-    background: rgb(255, 80, 255);
-    }
-
-.store a {
-    color: rgb(255, 80, 255);
-    }
-
-.store fieldset, .store legend {
-    border: 1px solid rgb(255, 80, 255);
-    }
-
-
-.menu a {
-    color: rgb(30, 40, 50);
     }
 
 .nowrap {
@@ -171,56 +122,17 @@ section#billboard .btn-default {
     text-align: center;
     }
 
-.field-left {
-    margin-right: auto;
-    }
-
-.field-right {
-    display: flex;
-    margin-bottom: 2rem;
-    padding-top: 2rem;
-    }
-
-.loop-entry {
-    font-size: 16px;
-    margin-bottom: 2rem;
-    }
-
-.loop-entry h2 {
-    margin: 0.5rem 0;
-    }
-
-.loop-entry h2 a,
-.loop-entry h2 a:visited {
-    color: blue;
-    text-decoration: none;
-    }
-
-.loop-entry p {
-    margin: 0;
-    font-weight: 400;
-    }
-
-.btn a:hover {
-    color: rgb(15,25,35);
-    }
-
-.btn a:visited:hover {
-    color: rgb(15,25,35);
-    }
-
-.btn a:visited {
-    color: rgb(15,25,35);
-    text-decoration: none;
-    }
-
 .button {
     border: 1px solid gray;
     border-radius: 100px;
+    color: #fff;
     width: auto;
+    margin-left: 0%;
     background-color: rgb(0,0,0,0.5);
     padding: 0.7% 1.2%;
+    text-align: center;
     }
+
 
 .base {
     border-radius: 25px;
@@ -249,4 +161,8 @@ section#billboard .btn-default {
     margin-right: 0%;
     background-color: rgb(25,35,45);
     text-align: center;
+    }
+
+footer {
+    background-color: rgb(0,0,0,0.5);
     }
