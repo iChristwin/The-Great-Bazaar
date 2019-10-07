@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from django.views.generic import CreateView, DeleteView, DetailView, UpdateView, ListView
+from django.views.generic import CreateView, DeleteView
+from django.views.generic import DetailView, UpdateView
+from django.views.generic import ListView, TemplateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -11,6 +13,10 @@ from .models import Accounts
 from .models import CollectDeposit, DisburseDeposit
 from .forms import CollectForm, DisburseForm
 from .utils import get_account
+
+
+def choose_bank(request, pk, bank):
+    return ''
 
 
 class ConfirmDeposit(LoginRequiredMixin, UpdateView):
@@ -43,6 +49,8 @@ def confirm_deposit(request, pk):
 
 @login_required
 def proceed_deposit(request, bank, pk):
+    if bank == 'bank':
+        return render(request, template_name='payments/banks.html', context={'pk': pk})
     contract = Offer.objects.get(pk=pk)
     trnx, status = CollectDeposit.objects.get_or_create(contract=contract,
                                                         owner=request.user,)
@@ -73,5 +81,3 @@ def cashout_proceed(request, pk):
         return render(request, 'payments/form.html',
                       {'form': form, }
                       )
-
-

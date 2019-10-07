@@ -41,6 +41,10 @@
             </strong><br>
         </fieldset><br>
         <p class="text-right">
+            <a class="button" href="{% url 'password:password_change' %}">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                Change Password
+            </a>
             <a class="button" href="{% url 'user:update' pk=profile.pk %}">Update</a>
             {% else %}
         </p>

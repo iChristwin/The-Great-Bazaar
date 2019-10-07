@@ -14,7 +14,7 @@
         <div class="col-md-12 column">
             <br><br>
             <text class="h2 button">My Bookmarks</text>
-            {% if bookmarks %}
+            {% if bookmarks.bookmarked.all %}
                 {% for item in bookmarks.bookmarked.all %}
                 <hr>
                 <h3 style="text-transform:uppercase;">

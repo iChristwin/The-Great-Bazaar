@@ -6,6 +6,45 @@
 {% endblock %}
 {% block content %}
     {% if user.is_authenticated %}
+    <br><br>
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <a href="{% url 'item:inventory' %}" class="h3">
+                <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                My Inventory
+            </a>
+            <br><text class="h5">Items you have added!</text>
+            <br>
+            <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+            {{ user.item_set.count }} Item{{ user.item_set.count|pluralize }}<br>
+            <br><br>
+            <hr>
+            <a href="{% url 'offer:list' %}" class="h3">
+                <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                My Interest
+            </a>
+            <br>Items you are interested in!
+            <br>
+            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+            {{ user.offer_set.count }} Offer{{ user.offer_set.count|pluralize }}<br>
+            <br><br>
+            <hr>
+            <a href="{% url 'bookmark:list' %}" class="h3">
+                <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                My Bookmarks
+            </a>
+            <br>Items you have bookmarked!
+            <br>
+            <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
+            {{ user.bookmark.bookmarked }} Bookmark{{ user.offer_set.count|pluralize }}<br>
+            <br><br>
+            <hr>
+            <a href="{% url 'offer:list' %}" class="h3">
+                <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+            </a>
+            <hr>
+        </div>
+    </div>
     {% else %}
     {% endif %}
 {% endblock content %}

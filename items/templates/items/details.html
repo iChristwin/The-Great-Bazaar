@@ -28,7 +28,7 @@
                 <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
                 <b>Gender: </b>{{ item.owner.gender.capitalize }}<br>
                 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                <b>Rating: </b>{{ item.owner.userrating.current_rating }} Star{{ profile.userrating|pluralize }}
+                <b>Rating: </b>{{ item.owner.userrating.current_rating }} Star{{ item.owner.userrating|pluralize }}
                 {% if item.owner.userrating.current_rating == 0.0 %}
                 <small style="color:red;"><strong>New User</strong></small>
                 {% endif %}<br>

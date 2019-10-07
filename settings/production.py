@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['the-great-bazaar.herokuapp.com',
 # Set debug to False
 DEBUG = False
 
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 # Static asset configuration
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

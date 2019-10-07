@@ -8,7 +8,7 @@
     <br>
     <form role="form" action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-        {% bootstrap_form form show_label=False %}
+        {% bootstrap_form form%}
         {% buttons %}
             <button type="submit" class="btn btn-primary">
                 {% block label %}

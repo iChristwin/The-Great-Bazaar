@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+{% block title %}
+    Join - {{ block.super }}
+{% endblock %}
+{% block billboard %}
+    <h1>Select Bank of choice</h1>
+{% endblock billboard %}
+{% block content %}
+    <br><br><br>
+    <a class="h2" href="{% url 'payment:proceed' pk=pk bank='first' %}">
+        <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+        First bank
+    </a>
+    <br><br><br>
+    <a class="h2" href="{% url 'payment:proceed' pk=pk bank='access' %}">
+        <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+        Access bank
+    </a>
+    <br><br><br>
+    <a class="h2" href="{% url 'payment:proceed' pk=pk bank='fidelity' %}">
+        <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+        Fidelity bank
+    </a>
+    <br><br><br>
+    <a class="h2" href="{% url 'payment:proceed' pk=pk bank='zenith' %}">
+        <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+        Zenith bank
+    </a>
+{% endblock %}
