@@ -2,7 +2,7 @@
 
 body {
     color: white;
-    background-image: url(/static/imgs/default.jpg);
+    background-image: url(https://res.cloudinary.com/christwin/image/upload/v1570469509/PicsArt_09-29-03.13.21_gtm0k1.jpg);
     background-size: cover;
     /* background-color: rgb(5, 15, 25); */
     }
@@ -45,7 +45,7 @@ legend {
     }
 
 .item {
-    background-image: url(/static/imgs/default.jpg);
+    background-image: url(https://res.cloudinary.com/christwin/image/upload/v1570469509/PicsArt_09-29-03.13.21_gtm0k1.jpg);
     background-size: cover;
     }
 
