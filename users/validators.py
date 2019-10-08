@@ -17,7 +17,7 @@ def is_sluggy(entry):
         if word.isalpha():
             pass
         else:
-            message = u"Just alphabets & hyphens please"
+            message = u"Just alphabets & hyphens (-) please!"
             raise ValidationError(message)
 
 

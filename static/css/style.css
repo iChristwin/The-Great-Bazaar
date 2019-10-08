@@ -50,11 +50,11 @@ legend {
     }
 
 .item a {
-    color: yellow;
+    color: gold;
     }
 
 .item legend, .item .button {
-    border: 1px solid yellow;
+    border: 1px solid gold;
     }
 
 .lodge {
@@ -75,7 +75,7 @@ legend {
     }
 
 a {
-    color: yellow
+    color: gold
     }
 
 a:hover{
