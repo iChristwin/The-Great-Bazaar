@@ -120,12 +120,6 @@ class RemoveItem(LoginRequiredMixin, DeleteView):
     login_url = 'login'
     context_object_name = 'item'
 
-    def dispatch(self, request, *args, **kwargs):
-        item = self.get_object()
-        if item.owner != self.request.user:
-            raise PermissionDenied
-        return super().dispatch(request, *args, **kwargs)
-
 
 class ItemInventory(LoginRequiredMixin, ListView):
     model = Item
