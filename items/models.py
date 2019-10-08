@@ -11,11 +11,11 @@ from .constants import CATEGORIES
 
 
 def front_photo_path(instance, filename):
-    return '/'.join(['item', str(instance.pk), 'front-'+str(filename)])
+    return '/'.join(['item', str(instance.pk), 'front-photo.'+filename.split('.')[-1]])
 
 
 def back_photo_path(instance, filename):
-    return '/'.join(['item', str(instance.pk), 'back-'+str(filename)])
+    return '/'.join(['item', str(instance.pk), 'back-photo.'+filename.split('.')[-1]])
 
 
 class Item(models.Model):

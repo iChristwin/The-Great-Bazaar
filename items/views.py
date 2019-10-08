@@ -116,9 +116,15 @@ class EditItem(LoginRequiredMixin, UpdateView):
 class RemoveItem(LoginRequiredMixin, DeleteView):
     model = Item
     template_name = 'items/delete.html'
-    success_url = reverse_lazy('items:inventory')
+    success_url = reverse_lazy('item:inventory')
     login_url = 'login'
     context_object_name = 'item'
+
+    def dispatch(self, request, *args, **kwargs):
+        item = self.get_object()
+        if item.owner != self.request.user:
+            raise PermissionDenied
+        return super().dispatch(request, *args, **kwargs)
 
 
 class ItemInventory(LoginRequiredMixin, ListView):
