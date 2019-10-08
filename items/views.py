@@ -86,6 +86,13 @@ class ItemReserved(DetailView):
         context = super(ItemReserved, self).get_context_data(**kwargs)
         return context
 
+    def dispatch(self, request, *args, **kwargs):
+        item = self.get_object()
+        if item.available is False:
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            return redirect('item:details', self.kwargs['pk'])
+
 
 class EditItem(LoginRequiredMixin, UpdateView):
     model = Item
