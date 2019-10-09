@@ -9,7 +9,7 @@ class UserAdmin(admin.ModelAdmin):
     model = User
     search_fields = ('user__{0}'.format('username'),
                      'user__first_name', 'user__last_name')
-    list_display = ('username', 'alias', 'locale', 'is_active', 'is_staff', 'gender', 'pk')
+    list_display = ('username', 'alias', 'batch', 'locale', 'is_active', 'is_staff', 'gender', 'pk')
 
 
 admin.site.register(User, UserAdmin)

@@ -7,69 +7,18 @@
     <h1>Welcome to {{ user.locale.upper }} Bazaar!</h1>
     <text class="h3 sub-text">~ Everybody Wins! ~</text>
 {% endblock billboard %}
-{% block body %}
-    <br><br><br><br>
+{% block content %}
     <hr style="width:80%;">
     <div class="jumbotron">
         <div class="row">
-        <div class="container">
-        <a href="{% url 'item:inventory' %}">
-            <span class="glyphicon glyphicon-tasks col-md-4" aria-hidden="true" style="font-size:120px"></span>
+        <div class="container h1">
+        <a class="btn btn-lg" style="color:#fff; background-color:orange" href="{% url 'item:search' %}">
+            Buy <span class="glyphicon glyphicon-shopping-cart col-md-4" aria-hidden="true"></span>
         </a>
-            <blockquote class="col-md-8 text-left h4">
-                <a href="{% url 'item:inventory' %}">
-                    <text class="h2">Create Value:</text>
-                </a>
-                <br><br>
-                List & Sell what you've got...<br>
-                Got Items you no longer need? now watch them turn to cash indeed
-            </blockquote>
-        </div>
-        </div>
-    </div>
-    <br><br>
-    <div class="jumbotron">
-        <div class="row">
-        <div class="container">
-            <div class="text-right h4 col-md-8">
-                <a href="{% url 'item:search' %}">
-                    <text class="h2">Discover Value:</text>
-                </a>
-                 <br><br>
-                Search & Discover a variety of items... <br>
-                Be quick to claim the things you love, else they go to he who does!
-            </div>
-            <blockquote class="col-md-4">
-            <a href="{% url 'item:search' %}">
-                <span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size:120px"></span>
-            </a>
-            </blockquote>
-        </div>
-        </div>
-    </div>
-    <br><br>
-    <div class="jumbotron">
-        <div class="row">
-        <div class="container">
-        <a href="{% url 'user:details' pk=user.pk %}">
-            <div  class="col-md-4" style="font-size:70px">
-            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-            <span class="glyphicon glyphicon-share-alt" aria-hidden="true" style="font-size:50px"></span>
-            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                <br>
-            <span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
-            </div>
+        <a class="btn btn-lg" style="color:#fff; background-color:green" href="{% url 'item:add' %}">
+            Sell <span class="glyphicon glyphicon-gift col-md-4" aria-hidden="true"></span>
         </a>
-            <blockquote class="col-md-8 text-left h4">
-                <a href="{% url 'user:details' pk=user.pk %}">
-                    <text class="h2">Spread Value:</text>
-                </a>
-                <br><br>
-                Refer Friends & get them to sell... <br>
-                Grab your link & spread the word, for which you'll earn some real reward <br>
-            </blockquote>
         </div>
         </div>
     </div>
-    <hr style="width:80%;">
-{% endblock body %}
+{% endblock content %}

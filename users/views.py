@@ -54,6 +54,7 @@ class SignUpView(CreateView):
             rating = UserRating(subject=user)
             rating.save()
             user.locale = kwargs['locale']
+            user.batch = str('A')
             user.save()
             login(self.request, user)
             return redirect('user:update', pk=user.pk)

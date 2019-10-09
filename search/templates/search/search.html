@@ -1,7 +1,12 @@
 
 {% extends 'base.html' %}
 {% load bootstrap3 %}
-{% block room %}
+{% block billboard %}
+<p class="pull-right h1">
+    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search Bazaar
+</p>
+{% endblock %}
+{% block content %}
     <div class="row clearfix">
         <div class="col-xs-12 col-md-12 column">
             <form method="GET" action="." class="search inline">
@@ -68,4 +73,4 @@
             {% endif %}
         </div>
     </div>
-{% endblock room %}
+{% endblock content %}

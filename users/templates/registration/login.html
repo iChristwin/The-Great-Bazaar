@@ -11,4 +11,11 @@
     {% block form %}
         {{ block.super }}
     {% endblock form %}
+    <div class="container">
+        <div class=" pull-right">
+        <a class="legend h4" style="color:gold" href="{% url 'password:password_reset' %}">forgot password?</a>
+            <br><br>
+        <a class="btn btn-warning" href="{% url 'join' %}" role="button">Signup instead</a>
+        </div>
+    </div>
 {% endblock %}

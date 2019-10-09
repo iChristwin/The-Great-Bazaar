@@ -25,11 +25,10 @@ class User(AbstractUser):
     gender = models.CharField(max_length=10, choices=GENDER, default=GENDER[0][0])
     alias = models.SlugField(max_length=10, validators=[is_sluggy])
     # could be potentially be used to collect real user info
-    acc_no = models.CharField(max_length=30, blank=False, unique=True,
-                              verbose_name='Acc.No', )
     view = models.CharField(max_length=10, default=VIEWS[0], )
     is_verified = models.BooleanField(default=False, blank=True)
     last_modified = models.DateField(auto_now=True, blank=True,)
+    batch = models.CharField(blank=True, default='0', max_length=2)
     # review_count in review model is == sales_count
 
     class Meta:

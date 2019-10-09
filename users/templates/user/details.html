@@ -13,7 +13,6 @@
         <b>Mobile Number: </b>{{ profile.username }}<br>
         <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
         <b>Email: </b>{{ profile.email }}<br>
-        <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
         {# ------------------- #}
         {% endif %}
         <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
@@ -34,12 +33,11 @@
             <b>Last seen</b>: {{ profile.last_modified }}
         </text><br><br>
         {% if profile == user %}
+        <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
         <strong>Referral Link: </strong>
-        <fieldset>
-            <strong style="color:#77f">
+            <strong style="color:#77f; whitespace:warp"><br>
                 https://the-great-bazaar.herokuapp.com{{ profile.get_referral }}
-            </strong><br>
-        </fieldset><br>
+            </strong><br><br>
         <p class="text-right">
             <a class="button" href="{% url 'password:password_change' %}">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>

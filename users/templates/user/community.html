@@ -4,12 +4,17 @@
     Join - {{ block.super }}
 {% endblock %}
 {% block billboard %}
-    <h1>Join an active community</h1>
+    <h1>Select your campus</h1>
 {% endblock billboard %}
 {% block content %}
+<div>
     <br><br><br>
-    <a class="h2" href="{% url 'signup' locale='unn' %}">
+    <fieldset class="h1">
         <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-        Join the UNN community
+        U.N.N<br>
+    <a class="button h4" style="color:gold" href="{% url 'signup' locale='unn' %}">
+        Join UNN community
     </a>
+    </fieldset>
+</div>
 {% endblock %}

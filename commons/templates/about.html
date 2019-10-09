@@ -13,6 +13,69 @@
         <br><br>
         <strong>Final lunch coming soon!</strong>
     </fieldset>
+    <br><hr><br>
+    <div class="jumbotron">
+        <div class="row">
+        <div class="container">
+            <span class="glyphicon glyphicon-tasks col-md-4" aria-hidden="true" style="font-size:120px"></span>
+            <blockquote class="col-md-8 text-left h4">
+                <text class="h2">Create Value:</text>
+                <br><br>
+                List & Sell what you've got...<br>
+                Got Items you no longer need? now watch them turn to cash indeed
+            </blockquote>
+            {% if user.is_authenticated %}
+            <br>
+            <a href="{% url 'item:add' %}" style="color:gold" class="button">+Add an item for sale</a>
+            {% endif %}
+        </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="jumbotron">
+        <div class="row">
+        <div class="container">
+            <div class="text-right h4 col-md-8">
+                <text class="h2">Discover Value:</text>
+                 <br><br>
+                Search & Discover a variety of items... <br>
+                Be quick to claim the things you love, else they go to he who does!
+            </div>
+            <blockquote class="col-md-4">
+                <span class="glyphicon glyphicon-search" aria-hidden="true" style="font-size:120px"></span>
+            </blockquote>
+            {% if user.is_authenticated %}
+            <br>
+            <a href="{% url 'item:search' %}" style="color:gold" class="button">Find items on sale</a>
+            {% endif %}
+        </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="jumbotron">
+        <div class="row">
+        <div class="container">
+            <div  class="col-md-4" style="font-size:70px">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-share-alt" aria-hidden="true" style="font-size:50px"></span>
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <br>
+            <span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+            </div>
+            <blockquote class="col-md-8 text-left h4">
+                    <text class="h2">Spread Value:</text>
+                <br><br>
+                Refer Friends & get them to sell... <br>
+                Grab your link & spread the word, for which you'll earn some real reward <br>
+            </blockquote>
+            {% if user.is_authenticated %}
+            <br>
+            <a href="{% url 'user:details' pk=user.pk %}" style="color:gold" class="button">Get my link</a>
+            {% endif %}
+        </div>
+        </div>
+    </div>
+    <hr style="width:80%;">
         <br><br>
         <br><br>
 {% endblock %}

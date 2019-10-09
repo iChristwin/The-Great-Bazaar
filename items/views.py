@@ -143,8 +143,4 @@ class ItemInventory(LoginRequiredMixin, ListView):
 
 def home(request):
     """This view decides what ur home view is, for starters, its intro"""
-    if request.user.item_set.count() > 0 or request.user.offer_set.count() > 0:
-        user_interests = Item.objects.filter(owner=request.user)
-        return render(request, 'home.html', {'interests': user_interests, })
-    else:
-        return redirect('intro')
+    return render(request, 'home.html')
