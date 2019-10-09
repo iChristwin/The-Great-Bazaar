@@ -33,7 +33,7 @@ ALLOWED_HOSTS = ['the-great-bazaar.herokuapp.com',
                  ]
 
 # Set debug to False
-DEBUG = True
+DEBUG = False
 
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
