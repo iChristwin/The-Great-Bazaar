@@ -1,8 +1,10 @@
 # Inherit from standard settings file for defaults
 # Everything below will override our standard settings:
 # Parse database configuration from $DATABASE_URL
+
 import dj_database_url
 import django_heroku
+from urlparse import urlparse
 
 from .base import *
 
@@ -37,7 +39,7 @@ DEBUG = False
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 django_heroku.settings(locals())
