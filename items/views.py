@@ -144,3 +144,13 @@ class ItemInventory(LoginRequiredMixin, ListView):
 def home(request):
     """This view decides what ur home view is, for starters, its intro"""
     return render(request, 'home.html')
+
+
+class ListItems(ListView):
+    model = Item
+    template_name = 'items/all.html'
+    context_object_name = 'items'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(available=True).order_by('-date_added')

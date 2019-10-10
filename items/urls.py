@@ -4,7 +4,7 @@ from django.urls import path
 from .views import AddItem, ItemInventory, item_home
 from .views import ItemDetails
 from .views import EditItem, RemoveItem
-from .views import ItemReserved
+from .views import ItemReserved, ListItems
 
 from search.views import ItemSearch
 from interest.views import AddOffer
@@ -23,4 +23,5 @@ urlpatterns = [
     path('<int:pk>/reserved/', ItemReserved.as_view(), name='reserved'),
     path('<int:pk>/interested/', AddOffer.as_view(), name='interested'),
 
+    path('all/', ListItems.as_view(), name='all'),
 ]
