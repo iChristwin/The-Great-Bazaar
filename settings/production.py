@@ -10,6 +10,8 @@ from .base import *
 
 DATABASES['default'] = dj_database_url.config()
 
+DOMAIN = 'https://the-great-bazaar.herokuapp.com'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     # I added whitenoise here

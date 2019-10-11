@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     # My Apps -------------
     'items',
     'users',
+    'store',
     'review',
     'payment',
     'interest',
@@ -66,6 +67,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'users/templates'),
+                 os.path.join(BASE_DIR, 'store/templates'),
+                 os.path.join(BASE_DIR, 'stock/templates'),
                  os.path.join(BASE_DIR, 'review/templates'),
                  os.path.join(BASE_DIR, 'search/templates'),
                  os.path.join(BASE_DIR, 'commons/templates'),

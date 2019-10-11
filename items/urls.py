@@ -9,7 +9,7 @@ from .views import ItemReserved, ListItems
 from search.views import ItemSearch
 from interest.views import AddOffer
 
-app_name = 'model'
+app_name = 'item'
 urlpatterns = [
     path('', item_home, name='home'),
     path('search/', ItemSearch.as_view(), name='search'),

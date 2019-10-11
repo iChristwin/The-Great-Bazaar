@@ -37,10 +37,13 @@ urlpatterns = [
     path('password/', include('users.url.password')),
     path('user/', include('users.urls', namespace='user')),
     path('item/', include('items.urls', namespace='item')),
+    path('store/', include('store.urls.store', namespace='store')),
+    path('stock/', include('store.urls.stock', namespace='stock')),
     path('payment/', include('payment.urls', namespace='payment')),
     path('offer/', include('interest.urls.offer', namespace='offer')),
     path('bargain/', include('interest.urls.bargain', namespace='bargain')),
     path('bookmark/', include('interest.urls.bookmark', namespace='bookmark')),
+    path('order/', include('interest.urls.order', namespace='order')),
 
     path('admin/', admin.site.urls),
     path('join/', JoinCommunity.as_view(), name='join'),

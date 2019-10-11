@@ -9,10 +9,11 @@ from django.views.generic import ListView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Offer, Bookmarks, Bargain
-from .forms import OfferForm, BargainForm
+from .models import Offer, Bookmarks, Bargain, Order
+from .forms import OfferForm, BargainForm, OrderForm
 
 from items.models import Item
+from store.models import Stock
 
 # ===================================================================
 
@@ -209,3 +210,90 @@ def accept_bargain(request, pk):
         offer.save()
         offer.bargain.delete()
     return redirect(offer.item.get_absolute_url())
+
+
+class AddOrder(LoginRequiredMixin, CreateView):
+    model = Order
+    form_class = OrderForm
+    login_url = 'login'
+    context_object_name = 'order'
+    template_name = 'interest/form.html'
+
+    def form_valid(self, form):
+        form.instance.stock = Stock.objects.get(pk=self.kwargs['pk'])
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        kwargs['action'] = 'Make'
+        kwargs['interest'] = 'Order'
+        context = super(AddOrder, self).get_context_data(**kwargs)
+        return context
+
+    def dispatch(self, request, *args, **kwargs):
+        stock = Stock.objects.get(pk=self.kwargs['pk'])
+        if stock.store.owner == self.request.user:
+            raise PermissionDenied
+        return super().dispatch(request, *args, **kwargs)
+
+
+class UpdateOrder(LoginRequiredMixin, UpdateView):
+    model = Order
+    form_class = OrderForm
+    login_url = 'login'
+    context_object_name = 'order'
+    template_name = 'interest/form.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['action'] = 'Update'
+        kwargs['interest'] = 'Order'
+        context = super(UpdateOrder, self).get_context_data(**kwargs)
+        return context
+
+    def dispatch(self, request, *args, **kwargs):
+        order = self.get_object()
+        if order.owner != self.request.user:
+            raise PermissionDenied
+        return super().dispatch(request, *args, **kwargs)
+
+
+class DeleteOrder(LoginRequiredMixin, DeleteView):
+    model = Order
+    login_url = 'login'
+    template_name = 'interest/delete.html'
+    success_url = reverse_lazy('home')
+    context_object_name = 'order'
+
+    def dispatch(self, request, *args, **kwargs):
+        order = self.get_object()
+        if order.owner == self.request.user or order.stock.store.owner == self.request.user:
+            return super().dispatch(request, *args, **kwargs)
+        else:
+            raise PermissionDenied
+
+
+class MyOrders(LoginRequiredMixin, ListView):
+    model = Order
+    login_url = 'login'
+    template_name = 'interest/list.html'
+    context_object_name = 'orders'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset.filter(owner=self.request.user)
+        return queryset
+
+
+@login_required
+def accept_order(request, pk):
+    order = Order.objects.get(pk=pk)
+    if order.quantity < order.stock.quantity and order.accepted is False:
+        if request.user == order.stock.store.owner:
+            order.stock.quantity -= order.quantity
+            order.accepted = True
+            order.stock.save()
+            order.save()
+    return redirect(order.stock.get_absolute_url())
+
+
+

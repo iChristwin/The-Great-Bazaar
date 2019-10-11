@@ -2,12 +2,16 @@ from django.db import models
 
 # Create your models here.
 # My imports -----------------------------------------------------------------
+from django.conf import settings
 from django.shortcuts import reverse
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import ugettext_lazy as _
 
 from .constants import VIEWS, GENDER
 from .validators import is_mobile, is_sluggy, is_enlisted
+
+
+DOMAIN = getattr(settings, 'DOMAIN', 'localhost')
 
 
 class User(AbstractUser):
@@ -48,6 +52,6 @@ class User(AbstractUser):
         return reverse("%s:search" % self.view)
 
     def get_referral(self):
-        return reverse('r_signup', kwargs={'locale': self.locale,
-                                           'code': hex(int(self.username))[2:]
-                                           })
+        return DOMAIN+'/'+reverse('r_signup', kwargs={'locale': self.locale,
+                                  'code': hex(int(self.username))[2:]
+                                  })

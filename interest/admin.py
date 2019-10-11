@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 # My imports -----------------------------------------------------------------
-from .models import Offer, Bargain, Bookmarks
+from .models import Offer, Bargain, Bookmarks, Order
 
 
 class OfferAdmin(admin.ModelAdmin):
@@ -22,6 +22,12 @@ class BookmarkAdmin(admin.ModelAdmin):
     list_display = ('owner',)
 
 
+class OrderAdmin(admin.ModelAdmin):
+    model = Order
+    list_display = ('owner', 'stock', 'quantity')
+
+
 admin.site.register(Offer, OfferAdmin)
+admin.site.register(Order, OrderAdmin)
 admin.site.register(Bargain, BargainAdmin)
 admin.site.register(Bookmarks, BookmarkAdmin)

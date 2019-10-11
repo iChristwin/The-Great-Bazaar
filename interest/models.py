@@ -6,6 +6,7 @@ from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
 
 from items.models import Item
+from store.models import Stock
 
 # =======================================================================
 
@@ -23,6 +24,23 @@ class Bookmarks(models.Model):
 
     def get_absolute_url(self):
         return reverse("bookmark:details", kwargs={'pk': self.pk})
+
+# =======================================================================
+
+
+class Order(models.Model):
+    owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,)
+    stock = models.ForeignKey(Stock, on_delete=models.CASCADE,
+                                 blank=True,)
+    quantity = models.PositiveSmallIntegerField(default=1)
+    accepted = models.BooleanField(default=False)
+    order_time = models.DateTimeField(auto_now_add=True, blank=True,)
+
+    def __str__(self):
+        return "%(stock)s order" % ({'stock': self.stock, })
+
+    def get_absolute_url(self):
+        return reverse("stock:details", kwargs={'pk': self.stock.pk})
 
 # =======================================================================
 

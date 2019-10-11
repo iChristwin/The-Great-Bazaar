@@ -1,0 +1,16 @@
+
+{% extends 'forms.html' %}
+{% block title %}
+    {{ action }} Stock - {{ block.super }}
+{% endblock %}
+{% block billboard %}
+    <h2>{{ action }} stock</h2>
+{% endblock billboard %}
+{% block content %}
+    <br><br>
+    {% if user.is_authenticated %}
+        {% block form %}
+            {{ block.super }}
+        {% endblock form %}
+    {% endif %}
+{% endblock content %}

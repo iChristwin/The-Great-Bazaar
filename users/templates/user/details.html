@@ -36,7 +36,7 @@
         <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
         <strong>Referral Link: </strong>
             <strong style="color:#77f; whitespace:warp"><br>
-                https://the-great-bazaar.herokuapp.com{{ profile.get_referral }}
+                {{ profile.get_referral }}
             </strong><br><br>
         <p class="text-right">
             <a class="button" href="{% url 'password:password_change' %}">

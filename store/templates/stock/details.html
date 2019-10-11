@@ -1,0 +1,118 @@
+
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block title %}
+    Details {{ block.super }}
+{% endblock %}
+{% block content %}
+    <br><br>
+    <div class="row clearfix">
+        <div class="col-md-12 col-sm-12 column">
+            <fieldset>
+                {% if stock.quantity == 0 %}
+                <h3 style="font-weight:bold; color: red">**Out Of Stock**</h3>
+                {% endif %}
+                <legend class="h2">{{ stock.name }}</legend>
+                <div class="row">
+                    <img src="{{ stock.front_photo.url }}" alt="" class="img-rounded img-responsive col-md-6 col-sm-6"/>
+                    <img src="{{ stock.back_photo.url }}" alt="" class="img-rounded img-responsive col-md-6 col-sm-6"/>
+                </div>
+                <a href="{% url 'user:details' pk=stock.store.owner.pk %}">
+                    <strong style="font-size: 2rem;">Store Owner</strong><br>
+                </a>
+                <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
+                <b>Gender: </b>{{ stock.store.owner.gender.capitalize }}<br>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <b>Rating: </b>{{ stock.store.owner.userrating.current_rating }} Star{{ stock.store.owner.userrating|pluralize }}
+                {% if stock.store.owner.userrating.current_rating == 0.0 %}
+                <small style="color:red;"><strong>New User</strong></small>
+                {% endif %}<br>
+                <text style="font-size: 13px;">
+                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                        <b>Last seen</b>: {{ stock.store.owner.last_login }}
+                </text><br><br>
+                <strong style="font-size: 2rem; color: orange">Stock</strong><br>
+                {% if user.is_authenticated is False %}
+                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                <b>Location: </b>{{ stock.store.owner.locale.upper }}<br>
+                {% endif %}
+                <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                <b>Category: </b>{{ stock.category }}<br>
+                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                <b>Orders: </b>{{ stock.order_set.count }}
+                Order{{ stock.order_set.count|pluralize }}<br>
+                <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                <b>Available Quantity: </b> {{ stock.quantity }}<br>
+                <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+                <b>Price: </b>{{ stock.price }}<br>
+                <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+                <strong>Link :</strong>
+                    <strong style="color:#77f; whitespace:warp"><br>
+                    {{ stock.get_direct_url }}
+                    </strong>
+                <br><br>
+                <strong style="font-size: 2rem; color: orange">Descriptions</strong>
+                <blockquote class="h5">
+                    {% for line in stock.get_description %}
+                        {{ line }}<br>
+                    {% endfor %}
+                </blockquote>
+                <p class="text-right">
+                {% if stock.store.owner == user %}
+                    <a class="button" href="{% url 'stock:update' pk=stock.pk %}">Update</a>
+                    <a class="button" href="{% url 'stock:remove' pk=stock.pk %}">Remove</a>
+                {% else %}
+                    {% if user.is_authenticated and stock.quantity > 0 %}
+                    <a class="button" href="{% url 'stock:order' pk=stock.pk %}">
+                        Order
+                    </a>
+                    {% endif %}
+                </p>
+                {% endif %}
+            </fieldset>
+            <br><br>
+            {% block more %}
+            {% if orders %}
+                <text class="h3 button">Orders on this Stock</text><br><br>
+                {% for order in orders %}
+                <fieldset>
+                    <a href="{% url 'user:details' pk=order.owner.pk %}">
+                        <h4>{{ order.owner.username }}</h4>
+                    </a>
+                    <p>
+                        <b>Quantity:</b> {{ order.quantity }}<br>
+                        {% if order.accepted %}
+                            <strong>Accepted: </strong><span class="glyphicon glyphicon-ok" style="color:green;" aria-hidden="true"></span>
+                        {% endif %}
+                        <small class="sub-text text-left">[ {{ order.order_time }} ]</small>
+                    </p>
+                    <p class="text-right">
+                        {% if stock.store.owner == user %}
+                            {% if order.accepted is False %}
+                            <a class="button" href="{% url 'order:accept' pk=order.pk %}">
+                                Accept
+                            </a>
+                            {% else %}
+                            <a class="button" href="{% url 'order:delete' pk=order.pk %}">
+                                Delete
+                            </a>
+                            {% endif %}
+                        <br>
+                        {% endif %}
+                        {% if order.owner == user %}
+                        <a class="button" href="{% url 'order:update' pk=order.pk %}">
+                            Update
+                        </a>
+                        <a class="button" href="{% url 'order:delete' pk=order.pk %}">
+                            Delete
+                        </a>
+                        {% endif %}
+                    </p>
+                </fieldset>
+                <br>
+                {% endfor %}
+            {% endif %}
+            {% endblock more %}
+        </div>
+    </div>
+{% endblock content %}

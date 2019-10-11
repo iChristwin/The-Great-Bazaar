@@ -60,7 +60,7 @@
                 <div class="container">
                     <div class="row">
                         {% block billboard %}
-                            {% if user.is_authenticated %}
+                        {% if user.is_authenticated %}
                             <div class="text-right">
                                 <a class="h1" style="color:gold" href="{% url 'user:details' pk=user.pk %}">#{{ user.alias }}</a>
                                 <br>
@@ -76,7 +76,12 @@
                                 </a>
                             </div>
                             <hr style="width:60%">
+                            {% if user.store %}
+                            <a class="button h3" href="{% url 'store:details' pk=user.store.pk %}">My Store</a>
+                            {% else %}
+                            <a class="button h3" href="{% url 'store:setup' %}">Setup Store</a>
                             {% endif %}
+                        {% endif %}
                         {% endblock billboard %}
                     </div>
                 </div>

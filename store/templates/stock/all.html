@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block title %} Available Items - {{ block.super }}{% endblock %}
+{% block header %}
+    {{ block.super }}
+{% endblock header %}
+{% block content %}
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <br><br>
+            <text class="h2 button">Available Stock</text>
+            {% if items %}
+                {% for item in items %}
+                <hr>
+            <fieldset>
+                <h3 style="text-transform:uppercase;">
+                    <a href="{% url 'item:details' pk=item.pk %}">
+                        {{ item.name }}
+                    </a>
+                    <br>
+                </h3>
+                <strong style="font-size: 2rem; color: orange">Owner</strong><br>
+                <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
+                <b>Gender: </b>{{ item.owner.gender.capitalize }}<br>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <b>Rating: </b>{{ item.owner.userrating.current_rating }} Star{{ profile.userrating|pluralize }}<br>
+                <text style="font-size: 13px;">
+                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                    <b>Last seen</b>: {{ item.owner.last_login }}
+                </text><br><br>
+                <strong style="font-size: 2rem; color: orange">Item</strong><br>
+                {% if user.is_authenticated is False %}
+                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                <b>Location: </b>{{ item.owner.locale.upper }}<br>
+                {% endif %}
+                <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                <b>Category: </b>{{ item.category }}<br>
+                <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
+                <b>Interest: </b>{{ item.offer_set.count }}
+                Offer{{ item.offer_set.count|pluralize }}<br>
+                <b>Available: </b>
+                {% if item.available %}
+                <span class="glyphicon glyphicon-ok" style="color:green;" aria-hidden="true"></span>
+                {% else %}
+                <span class="glyphicon glyphicon-remove" style="color:red;"  aria-hidden="true"></span>
+                {% endif %}
+                <br>
+                {% endfor %}
+            </fieldset><br><br>
+            {% else %}
+            <hr>
+            No items to show!
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

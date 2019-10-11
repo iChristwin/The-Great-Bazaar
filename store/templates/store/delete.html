@@ -1,0 +1,22 @@
+
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block title %}
+    Remove store - {{ block.super }}
+{% endblock title %}
+{% block content %}
+    {% if user.is_authenticated %}
+    <h1>Remove Store</h1>
+    <p>Are you sure you want to remove
+        <b>Store: {{ object.name }}</b>?
+    </p>
+        <form action="" method="post">
+            {% csrf_token %}
+            {% buttons %}
+                <button type="submit" class="btn btn-danger">
+                    Yes! remove
+                </button>
+            {% endbuttons %}
+        </form>
+    {% endif %}
+{% endblock content %}
