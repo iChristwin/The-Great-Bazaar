@@ -13,9 +13,10 @@
                 <h3 style="font-weight:bold; color: red">**Out Of Stock**</h3>
                 {% endif %}
                 <legend class="h2">{{ stock.name }}</legend>
+                {% if photos %}
                 <div class="row">
-                    <img src="{{ stock.front_photo.url }}" alt="" class="img-rounded img-responsive col-md-6 col-sm-6"/>
-                    <img src="{{ stock.back_photo.url }}" alt="" class="img-rounded img-responsive col-md-6 col-sm-6"/>
+                    {% for photo in photos %}
+                    <img src="{{ photo.image.url }}" alt="" class="img-rounded img-responsive col-md-6 col-sm-6"/>
                 </div>
                 <a href="{% url 'user:details' pk=stock.store.owner.pk %}">
                     <strong style="font-size: 2rem;">Store Owner</strong><br>

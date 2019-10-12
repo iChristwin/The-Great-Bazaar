@@ -10,6 +10,9 @@ from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from .forms import CloudinaryPhotoForm
+from .models import CloudinaryPhotos
+
 from interest.models import Order
 from review.models import UserRating
 
@@ -131,6 +134,7 @@ class StockDetails(DetailView):
         and user rating
         """
         stock = self.get_object()
+        kwargs['photos'] = CloudinaryPhotos.objects.filter(stock=stock)
         if self.request.user == stock.store.owner:
             kwargs['orders'] = Order.objects.filter(stock=stock).order_by('-order_time')
         elif self.request.user.is_authenticated:
@@ -182,3 +186,15 @@ def home(request):
     return render(request, 'home.html')
 
 
+def add_photo(request):
+    if request.method == "POST":
+        form = CloudinaryPhotoForm(request.POST, request.FILES)
+        if form.is_valid():
+            photo = CloudinaryPhotos()
+            photo.caption = request.POST.get('caption')
+            photo.save()
+            return redirect('/photo/' + photo.id)
+    else:
+        form = CloudinaryPhotoForm()
+
+    return render(request, 'add-photo.html', {'form': form})

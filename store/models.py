@@ -6,6 +6,9 @@ from django.conf import settings
 from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
+from django.db.models.signals import pre_delete
+import cloudinary
+from cloudinary.models import CloudinaryField
 
 from .constants import CATEGORIES
 # =======================================================================
@@ -43,8 +46,6 @@ class Stock(models.Model):
     category = models.CharField(max_length=25, choices=CATEGORIES)
     store = models.ForeignKey(Store, on_delete=models.CASCADE, )
     quantity = models.PositiveSmallIntegerField(default=2)
-    front_photo = models.ImageField(upload_to=front_photo_path, default='default/item.jpg')
-    back_photo = models.ImageField(upload_to=back_photo_path, default='default/item.jpg')
 
     date_added = models.DateTimeField(auto_now_add=True, blank=True,)
     orders = models.ManyToManyField(get_user_model(), related_name='orders', )
@@ -64,3 +65,13 @@ class Stock(models.Model):
 
     def get_direct_url(self):
         return DOMAIN+reverse("stock:details", kwargs={'pk': self.pk})
+
+
+class CloudinaryPhotos(models.Model):
+    image = CloudinaryField('image')
+    stock = models.ForeignKey(Stock, on_delete=models.CASCADE, )
+
+
+@receiver(pre_delete, sender=CloudinaryPhotos)
+def photo_delete(sender, instance, **kwargs):
+    cloudinary.uploader.destroy(instance.image.public_id)

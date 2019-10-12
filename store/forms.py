@@ -1,7 +1,9 @@
 from django import forms
 from django.template.loader import render_to_string
+from django.forms import ModelForm
 
 from .models import Store, Stock
+from .models import CloudinaryPhotos
 
 # ===================================================================
 
@@ -28,5 +30,10 @@ class StockForm(forms.ModelForm):
 
 class StockUpdateForm(StockForm):
     class Meta(StockForm.Meta):
-        fields = ('category', 'name', 'description', 'quantity', 'price',
-                  'front_photo', 'back_photo')
+        fields = ('category', 'name', 'description', 'quantity', 'price',)
+
+
+class CloudinaryPhotoForm(ModelForm):
+    class Meta:
+        model = CloudinaryPhotos
+        fields = ('image', )

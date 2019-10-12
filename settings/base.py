@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import cloudinary
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
     # External apps --------
     'haystack',
     'bootstrap3',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -166,3 +168,8 @@ EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 EMAIL_PORT = 1025
+
+cloudinary.config(cloud_name=os.environ['CLOUDINARY_CLOUD_NAME'],
+                  api_key=os.environ['CLOUDINARY_API_KEY'],
+                  api_secret=os.environ['CLOUDINARY_API_SECRET'],
+                  )
