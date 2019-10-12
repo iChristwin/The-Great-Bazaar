@@ -186,15 +186,14 @@ def home(request):
     return render(request, 'home.html')
 
 
-def add_photo(request):
+def add_photo(request, pk):
     if request.method == "POST":
         form = CloudinaryPhotoForm(request.POST, request.FILES)
         if form.is_valid():
             photo = CloudinaryPhotos()
-            photo.caption = request.POST.get('caption')
+            photo.stock = Stock.objects.get(pk=pk)
             photo.save()
-            return redirect('/photo/' + photo.id)
+            return redirect('stock:details', pk)
     else:
         form = CloudinaryPhotoForm()
-
-    return render(request, 'add-photo.html', {'form': form})
+    return render(request, 'store/form.html', {'form': form})

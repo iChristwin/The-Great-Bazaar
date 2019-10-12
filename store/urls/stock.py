@@ -2,7 +2,7 @@ from django.urls import path
 
 # My imports -----------------------------------------------------------------
 from ..views import AddStock
-from ..views import StockDetails
+from ..views import StockDetails, add_photo
 from ..views import UpdateStock, RemoveStock
 
 from search.views import ItemSearch
@@ -17,5 +17,6 @@ urlpatterns = [
     path('<int:pk>/edit/', UpdateStock.as_view(), name='update'),
     path('<int:pk>/remove/', RemoveStock.as_view(), name='remove'),
     path('<int:pk>/order/', AddOrder.as_view(), name='order'),
+    path('<int:pk>/photo/', add_photo, name='photo'),
 
 ]

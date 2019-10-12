@@ -17,7 +17,9 @@
                 <div class="row">
                     {% for photo in photos %}
                     <img src="{{ photo.image.url }}" alt="" class="img-rounded img-responsive col-md-6 col-sm-6"/>
+                    {% endfor %}
                 </div>
+                {% endif %}
                 <a href="{% url 'user:details' pk=stock.store.owner.pk %}">
                     <strong style="font-size: 2rem;">Store Owner</strong><br>
                 </a>
@@ -62,6 +64,7 @@
                 {% if stock.store.owner == user %}
                     <a class="button" href="{% url 'stock:update' pk=stock.pk %}">Update</a>
                     <a class="button" href="{% url 'stock:remove' pk=stock.pk %}">Remove</a>
+                    <a class="button" href="{% url 'stock:photo' pk=stock.pk %}">Add Photo</a>
                 {% else %}
                     {% if user.is_authenticated and stock.quantity > 0 %}
                     <a class="button" href="{% url 'stock:order' pk=stock.pk %}">

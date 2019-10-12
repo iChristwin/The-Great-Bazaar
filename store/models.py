@@ -6,7 +6,7 @@ from django.conf import settings
 from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
-from django.db.models.signals import pre_delete
+
 import cloudinary
 from cloudinary.models import CloudinaryField
 
@@ -72,9 +72,10 @@ class Stock(models.Model):
 
 class CloudinaryPhotos(models.Model):
     image = CloudinaryField('image')
-    stock = models.ForeignKey(Stock, on_delete=models.CASCADE, )
+    stock = models.OneToOneField(Stock, on_delete=models.CASCADE, )
 
 
 @receiver(pre_delete, sender=CloudinaryPhotos)
 def photo_delete(sender, instance, **kwargs):
     cloudinary.uploader.destroy(instance.image.public_id)
+
