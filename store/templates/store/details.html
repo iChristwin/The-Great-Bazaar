@@ -53,6 +53,9 @@
                     <a class="button" href="{% url 'store:delete' pk=store.pk %}">Remove</a>
                 {% endif %}
             </fieldset>
+            <a href="{% url 'stock:add' %}" class="button pull-right h4">
+                <strong>+</strong>Add Stock
+            </a>
             <br><br>
             {% block more %}
             {% if store.stock_set.all %}

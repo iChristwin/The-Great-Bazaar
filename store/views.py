@@ -111,8 +111,6 @@ class AddStock(LoginRequiredMixin, CreateView):
 
     def post(self, request, *args, **kwargs):
         response = super(AddStock, self).post(request, *args, **kwargs)
-        order = Order(stock=self.object)
-        order.save()
         return response
 
     def form_valid(self, form):
