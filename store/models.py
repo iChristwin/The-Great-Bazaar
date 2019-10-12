@@ -10,6 +10,9 @@ from django.db.models.signals import pre_delete
 import cloudinary
 from cloudinary.models import CloudinaryField
 
+from django.dispatch import receiver
+from django.db.models.signals import pre_delete
+
 from .constants import CATEGORIES
 # =======================================================================
 
