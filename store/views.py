@@ -34,9 +34,11 @@ class SetupStore(LoginRequiredMixin, CreateView):
     model = Store
     form_class = StoreForm
     template_name = 'store/form.html'
-    success_url = 'store:details'
     login_url = 'login'
     context_object_name = 'store'
+
+    def get_success_url(self):
+        return reverse_lazy('store:details', kwarg={'pk': self.object.pk})
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
