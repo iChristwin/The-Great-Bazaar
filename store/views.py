@@ -190,7 +190,7 @@ def add_photo(request, pk):
     if request.method == "POST":
         form = CloudinaryPhotoForm(request.POST, request.FILES)
         if form.is_valid():
-            photo = CloudinaryPhotos()
+            photo = form.save(commit=False)
             photo.stock = Stock.objects.get(pk=pk)
             photo.save()
             return redirect('stock:details', pk)

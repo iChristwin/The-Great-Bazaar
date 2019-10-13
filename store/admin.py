@@ -15,11 +15,11 @@ class StockAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'quantity', 'price', 'pk', )
 
 
-class CloudinaryPhotsAdmin(admin.ModelAdmin):
+class CloudinaryPhotosAdmin(admin.ModelAdmin):
     model = CloudinaryPhotos
     list_display = ('stock', 'pk',)
 
 
 admin.site.register(Store, StoreAdmin)
 admin.site.register(Stock, StockAdmin)
-# admin.site.register(CloudinaryPhotos, CloudinaryPhotos)
+admin.site.register(CloudinaryPhotos, CloudinaryPhotosAdmin)
