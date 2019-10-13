@@ -2,7 +2,7 @@ from haystack import indexes
 from .models import Item
 
 
-class ItemIndex(indexes.SearchIndex, indexes.Indexable):
+class ItemiIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
     locale = indexes.CharField(model_attr='owner__locale')
     last_seen = indexes.DateField(model_attr='owner__last_modified')

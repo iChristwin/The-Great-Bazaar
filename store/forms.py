@@ -3,7 +3,7 @@ from django.template.loader import render_to_string
 from django.forms import ModelForm
 
 from .models import Store, Stock
-from .models import CloudinaryPhotos
+from .models import CloudinaryPhoto
 
 # ===================================================================
 
@@ -35,5 +35,5 @@ class StockUpdateForm(StockForm):
 
 class CloudinaryPhotoForm(ModelForm):
     class Meta:
-        model = CloudinaryPhotos
+        model = CloudinaryPhoto
         fields = ('image', )

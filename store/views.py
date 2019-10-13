@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import CloudinaryPhotoForm
-from .models import CloudinaryPhotos
+from .models import CloudinaryPhoto
 
 from interest.models import Order
 from review.models import UserRating
@@ -134,7 +134,7 @@ class StockDetails(DetailView):
         and user rating
         """
         stock = self.get_object()
-        kwargs['photos'] = CloudinaryPhotos.objects.filter(stock=stock)
+        kwargs['photos'] = CloudinaryPhoto.objects.filter(stock=stock)
         if self.request.user == stock.store.owner:
             kwargs['orders'] = Order.objects.filter(stock=stock).order_by('-order_time')
         elif self.request.user.is_authenticated:

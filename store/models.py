@@ -70,12 +70,12 @@ class Stock(models.Model):
         return DOMAIN+reverse("stock:details", kwargs={'pk': self.pk})
 
 
-class CloudinaryPhotos(models.Model):
+class CloudinaryPhoto(models.Model):
     image = CloudinaryField('image')
     stock = models.OneToOneField(Stock, on_delete=models.CASCADE, )
 
 
-@receiver(pre_delete, sender=CloudinaryPhotos)
+@receiver(pre_delete, sender=CloudinaryPhoto)
 def photo_delete(sender, instance, **kwargs):
     cloudinary.uploader.destroy(instance.image.public_id)
 

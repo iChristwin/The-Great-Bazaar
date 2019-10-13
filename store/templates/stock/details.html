@@ -41,9 +41,11 @@
                 {% endif %}
                 <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
                 <b>Category: </b>{{ stock.category }}<br>
+                {% if request.user == stock.owner %}
                 <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                 <b>Orders: </b>{{ stock.order_set.count }}
                 Order{{ stock.order_set.count|pluralize }}<br>
+                {% endif %}
                 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                 <b>Available Quantity: </b> {{ stock.quantity }}<br>
                 <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
@@ -66,7 +68,7 @@
                     <a class="button" href="{% url 'stock:remove' pk=stock.pk %}">Remove</a>
                     <a class="button" href="{% url 'stock:photo' pk=stock.pk %}">Add Photo</a>
                 {% else %}
-                    {% if user.is_authenticated and stock.quantity > 0 %}
+                    {% if stock.quantity > 0 %}
                     <a class="button" href="{% url 'stock:order' pk=stock.pk %}">
                         Order
                     </a>
@@ -79,6 +81,7 @@
             {% if orders %}
                 <text class="h3 button">Orders on this Stock</text><br><br>
                 {% for order in orders %}
+                {% if order.owner == request.user or stock.owner == request.user %}
                 <fieldset>
                     <a href="{% url 'user:details' pk=order.owner.pk %}">
                         <h4>{{ order.owner.username }}</h4>
@@ -113,6 +116,7 @@
                         {% endif %}
                     </p>
                 </fieldset>
+                {% endif %}
                 <br>
                 {% endfor %}
             {% endif %}

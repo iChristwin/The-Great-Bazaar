@@ -53,9 +53,11 @@
                     <a class="button" href="{% url 'store:delete' pk=store.pk %}">Remove</a>
                 {% endif %}
             </fieldset>
+            {% if store.owner == user %}
             <a href="{% url 'stock:add' %}" class="button pull-right h4">
                 <strong>+</strong>Add Stock
             </a>
+            {% endif %}
             <br><br>
             {% block more %}
             {% if store.stock_set.all %}

@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 # My imports -----------------------------------------------------------------
-from .models import Store, Stock, CloudinaryPhotos
+from .models import Store, Stock, CloudinaryPhoto
 
 
 class StoreAdmin(admin.ModelAdmin):
@@ -16,10 +16,10 @@ class StockAdmin(admin.ModelAdmin):
 
 
 class CloudinaryPhotosAdmin(admin.ModelAdmin):
-    model = CloudinaryPhotos
+    model = CloudinaryPhoto
     list_display = ('stock', 'pk',)
 
 
 admin.site.register(Store, StoreAdmin)
 admin.site.register(Stock, StockAdmin)
-admin.site.register(CloudinaryPhotos, CloudinaryPhotosAdmin)
+admin.site.register(CloudinaryPhoto, CloudinaryPhotosAdmin)
