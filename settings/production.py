@@ -35,7 +35,7 @@ ALLOWED_HOSTS = ['the-great-bazaar.herokuapp.com',
                  ]
 
 # Set debug to False
-DEBUG = True
+DEBUG = False
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
