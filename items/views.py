@@ -14,7 +14,7 @@ from interest.models import Offer
 from review.models import UserRating
 
 from .models import Item, CloudinaryItemPhoto
-from .forms import ItemForm, ItemUpdateForm, CloudinaryPhotoForm
+from .forms import ItemForm, CloudinaryPhotoForm
 
 # ===================================================================
 
@@ -98,7 +98,7 @@ class ItemReserved(DetailView):
 
 class EditItem(LoginRequiredMixin, UpdateView):
     model = Item
-    form_class = ItemUpdateForm
+    form_class = ItemForm
     template_name = 'items/form.html'
     login_url = 'login'
     context_object_name = 'item'

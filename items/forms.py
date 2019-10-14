@@ -20,11 +20,6 @@ class ItemForm(forms.ModelForm):
         labels = {'name': 'Item name', }
 
 
-class ItemUpdateForm(ItemForm):
-    class Meta(ItemForm.Meta):
-        fields = ('category', 'name', 'description', 'front_photo', 'back_photo')
-
-
 class CloudinaryPhotoForm(ModelForm):
     class Meta:
         model = CloudinaryItemPhoto
