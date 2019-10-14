@@ -168,4 +168,4 @@ def add_photo(request, pk):
             return redirect('item:details', pk)
     else:
         form = CloudinaryPhotoForm()
-    return render(request, 'item/form.html', {'form': form})
+    return render(request, 'items/form.html', {'form': form})
