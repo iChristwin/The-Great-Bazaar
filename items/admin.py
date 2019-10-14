@@ -14,7 +14,7 @@ class ItemAdmin(admin.ModelAdmin):
 
 class CloudinaryPhotosAdmin(admin.ModelAdmin):
     model = CloudinaryItemPhoto
-    list_display = ('stock', 'pk',)
+    list_display = ('item', 'pk',)
 
 
 admin.site.register(Item, ItemAdmin)
