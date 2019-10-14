@@ -60,7 +60,7 @@
                 {% if item.owner == user %}
                     <a class="button" href="{% url 'item:update' pk=item.pk %}">Update</a>
                     <a class="button" href="{% url 'item:remove' pk=item.pk %}">Remove</a>
-                    <a class="button" href="{% url 'stock:photo' pk=item.pk %}">Add Photo</a>
+                    <a class="button" href="{% url 'item:photo' pk=item.pk %}">Add Photo</a>
                 {% else %}
                     {% if user.is_authenticated and item.available %}
                     <a class="button" href="{% url 'item:interested' pk=item.pk %}">
