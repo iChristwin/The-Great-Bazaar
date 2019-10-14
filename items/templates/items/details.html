@@ -13,10 +13,13 @@
                 <h3 style="font-weight:bold; color: red">**SOLD**</h3>
                 {% endif %}
                 <legend class="h2">{{ item.name }}</legend>
+                {% if photos %}
                 <div class="row">
-                    <img src="{{ item.front_photo.url }}" alt="" class="img-rounded img-responsive col-md-6 col-sm-6"/>
-                    <img src="{{ item.back_photo.url }}" alt="" class="img-rounded img-responsive col-md-6 col-sm-6"/>
+                    {% for photo in photos %}
+                    <img src="{{ photo.image.url }}" alt="" class="img-rounded img-responsive col-md-6 col-sm-6"/>
+                    {% endfor %}
                 </div>
+                {% endif %}
                 <a href="{% url 'user:details' pk=item.owner.pk %}">
                     <strong style="font-size: 2rem;">Owner</strong><br>
                 </a>

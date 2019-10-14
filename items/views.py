@@ -13,8 +13,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from interest.models import Offer
 from review.models import UserRating
 
-from .models import Item
-from .forms import ItemForm, ItemUpdateForm
+from .models import Item, CloudinaryItemPhoto
+from .forms import ItemForm, ItemUpdateForm, CloudinaryPhotoForm
 
 # ===================================================================
 
@@ -54,6 +54,7 @@ class ItemDetails(DetailView):
         and user rating
         """
         item = self.get_object()
+        kwargs['photos'] = CloudinaryItemPhoto.objects.filter(item=item)
         if self.request.user == item.owner:
             kwargs['offers'] = Offer.objects.filter(item=item).order_by('-offer')
         elif self.request.user.is_authenticated:
@@ -82,6 +83,7 @@ class ItemReserved(DetailView):
         and user rating
         """
         item = self.get_object()
+        kwargs['photos'] = CloudinaryItemPhoto.objects.filter(item=item)
         kwargs['offer'] = Offer.objects.get(item=item, accepted=True)
         context = super(ItemReserved, self).get_context_data(**kwargs)
         return context
@@ -154,3 +156,16 @@ class ListItems(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         return queryset.filter(available=True).order_by('-date_added')
+
+
+def add_photo(request, pk):
+    if request.method == "POST":
+        form = CloudinaryPhotoForm(request.POST, request.FILES)
+        if form.is_valid():
+            photo = form.save(commit=False)
+            photo.item = Item.objects.get(pk=pk)
+            photo.save()
+            return redirect('item:details', pk)
+    else:
+        form = CloudinaryPhotoForm()
+    return render(request, 'item/form.html', {'form': form})
