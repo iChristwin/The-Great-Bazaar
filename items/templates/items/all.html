@@ -13,7 +13,7 @@
             <br><br>
             <text class="h2 button">Available Items</text>
             {% if items %}
-                {% for item in items %}
+            {% for item in items %}
                 <hr>
             <fieldset>
                 <h3 style="text-transform:uppercase;">
@@ -48,8 +48,8 @@
                 <span class="glyphicon glyphicon-remove" style="color:red;"  aria-hidden="true"></span>
                 {% endif %}
                 <br>
-                {% endfor %}
             </fieldset><br><br>
+            {% endfor %}
             {% else %}
             <hr>
             No items to show!

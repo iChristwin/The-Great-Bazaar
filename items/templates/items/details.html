@@ -13,13 +13,10 @@
                 <h3 style="font-weight:bold; color: red">**SOLD**</h3>
                 {% endif %}
                 <legend class="h2">{{ item.name }}</legend>
-                {% if photos %}
                 <div class="row">
-                    {% for photo in photos %}
-                    <img src="{{ photo.image.url }}" alt="" class="img-rounded img-responsive col-md-6 col-sm-6"/>
-                    {% endfor %}
+                    <img src="{{ item.photo_front.url }}" alt="" class="img-rounded img-responsive col-md-6 col-sm-6"/>
+                    <img src="{{ item.photo_back.url }}" alt="" class="img-rounded img-responsive col-md-6 col-sm-6"/>
                 </div>
-                {% endif %}
                 <a href="{% url 'user:details' pk=item.owner.pk %}">
                     <strong style="font-size: 2rem;">Owner</strong><br>
                 </a>
@@ -60,9 +57,8 @@
                 {% if item.owner == user %}
                     <a class="button" href="{% url 'item:update' pk=item.pk %}">Update</a>
                     <a class="button" href="{% url 'item:remove' pk=item.pk %}">Remove</a>
-                    <a class="button" href="{% url 'item:photo' pk=item.pk %}">Add Photo</a>
                 {% else %}
-                    {% if user.is_authenticated and item.available %}
+                    {% if item.available %}
                     <a class="button" href="{% url 'item:interested' pk=item.pk %}">
                         I'm Interested
                     </a>

@@ -1,8 +1,7 @@
 from django import forms
 from django.template.loader import render_to_string
 
-from django.forms import ModelForm
-from .models import Item, CloudinaryItemPhoto
+from .models import Item
 
 # ===================================================================
 
@@ -16,11 +15,7 @@ class ItemForm(forms.ModelForm):
 
     class Meta:
         model = Item
-        fields = ('category', 'name', 'description',)
-        labels = {'name': 'Item name', }
+        fields = ('category', 'name', 'description', 'photo_front', 'photo_back')
+        labels = {'name': 'Item name', 'photo_front': 'Item image (front)',
+                  'photo_back': 'Item image (other)', }
 
-
-class CloudinaryPhotoForm(ModelForm):
-    class Meta:
-        model = CloudinaryItemPhoto
-        fields = ('image', )

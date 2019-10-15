@@ -6,11 +6,7 @@ from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 
-import cloudinary
 from cloudinary.models import CloudinaryField
-
-from django.dispatch import receiver
-from django.db.models.signals import pre_delete
 
 
 from .constants import CATEGORIES
@@ -36,6 +32,9 @@ class Item(models.Model):
     category = models.CharField(max_length=25, choices=CATEGORIES)
     owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, )
 
+    photo_front = CloudinaryField('image', default='https://res.cloudinary.com/ichristwin/image/upload/v1571126185/wmbalgw9rof6jen0ni5q.png')
+    photo_back = CloudinaryField('image', default='https://res.cloudinary.com/ichristwin/image/upload/v1571126185/wmbalgw9rof6jen0ni5q.png')
+
     booked_for = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,
                                    related_name='%(class)s_booked_for',
                                    verbose_name='Booked for',
@@ -60,13 +59,3 @@ class Item(models.Model):
 
 
 # =======================================================================
-
-class CloudinaryItemPhoto(models.Model):
-    image = CloudinaryField('image')
-    item = models.OneToOneField(Item, on_delete=models.CASCADE, )
-
-
-@receiver(pre_delete, sender=CloudinaryItemPhoto)
-def photo_delete(sender, instance, **kwargs):
-    cloudinary.uploader.destroy(instance.image.public_id)
-

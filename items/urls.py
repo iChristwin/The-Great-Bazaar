@@ -2,7 +2,7 @@ from django.urls import path
 
 # My imports -----------------------------------------------------------------
 from .views import AddItem, ItemInventory, item_home
-from .views import ItemDetails, add_photo
+from .views import ItemDetails
 from .views import EditItem, RemoveItem
 from .views import ItemReserved, ListItems
 
@@ -19,7 +19,6 @@ urlpatterns = [
 
     path('<int:pk>/', ItemDetails.as_view(), name='details'),
     path('<int:pk>/edit/', EditItem.as_view(), name='update'),
-    path('<int:pk>/photo/', add_photo, name='photo'),
     path('<int:pk>/remove/', RemoveItem.as_view(), name='remove'),
     path('<int:pk>/reserved/', ItemReserved.as_view(), name='reserved'),
     path('<int:pk>/interested/', AddOffer.as_view(), name='interested'),

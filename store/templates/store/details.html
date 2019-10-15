@@ -64,11 +64,11 @@
                 <text class="h3 button">This Store's Stock</text><br><br>
                 {% for stock in store.stock_set.all %}
                 <fieldset>
-                    <legend>
+                    <h3 style="text-transform:uppercase;">
                         <a href="{% url 'stock:details' pk=stock.pk %}">
                         {{ stock.name }}
                         </a>
-                    </legend>
+                    </h3>
                     <strong style="font-size: 2rem; color: orange">Descriptions</strong>
                     <blockquote class="h5">
                         {% for line in stock.get_description %}

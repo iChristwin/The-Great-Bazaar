@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 # My imports -----------------------------------------------------------------
-from .models import Item, CloudinaryItemPhoto
+from .models import Item
 
 
 class ItemAdmin(admin.ModelAdmin):
@@ -12,10 +12,4 @@ class ItemAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'available', 'owner', 'pk', )
 
 
-class CloudinaryPhotosAdmin(admin.ModelAdmin):
-    model = CloudinaryItemPhoto
-    list_display = ('item', 'pk',)
-
-
 admin.site.register(Item, ItemAdmin)
-admin.site.register(CloudinaryItemPhoto, CloudinaryPhotosAdmin)
