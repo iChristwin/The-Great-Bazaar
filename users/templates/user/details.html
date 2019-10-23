@@ -5,16 +5,19 @@
 {% endblock %}
 {% block content %}
     <fieldset>
-        <legend class="h2">{{ profile.alias }}</legend>
         {% if user == profile %}
+        <legend class="h2">{{ profile.alias }}</legend>
         <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-        <b>Location: </b>{{ profile.locale.upper }}<br>
         <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
         <b>Mobile Number: </b>{{ profile.username }}<br>
         <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
         <b>Email: </b>{{ profile.email }}<br>
         {# ------------------- #}
+        {% else %}
+        <strong style="font-size: 2rem; color: orange">Owner info</strong>
+        <br><br>
         {% endif %}
+        <b>Location: </b>{{ profile.locale.upper }}<br>
         <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
         <b>Gender: </b>{{ profile.gender.capitalize }}<br>
         <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
@@ -28,6 +31,7 @@
             {% else %}
             <span class="glyphicon glyphicon-remove" style="color:red;" aria-hidden="true"></span>
             {% endif %}<br>
+        <b>Items Sold:</b> {{ profile.item_set.count }} item{{ profile.item_set.count|pluralize }}<br>
         <text style="font-size: 13px;">
             <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
             <b>Last seen</b>: {{ profile.last_modified }}
