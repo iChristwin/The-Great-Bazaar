@@ -5,39 +5,51 @@
     {{ block.super }}
 {% endblock header %}
 {% block content %}
-    <ul>
+<div class="container">
+    <ul class="list-unstyled" style="text-align: center;">
         <li>
-            <a href="{% url 'item:category' category=bags %}" class="h1 ">Bags</a>
+            <a href="{% url 'item:category' category='bags' %}" class="h2 button">Bags</a>
         </li>
+        <br>
         <li>
-            <a href="{% url 'item:category' category=books %}" class="h1 ">Books</a>
+            <a href="{% url 'item:category' category='books' %}" class="h2 button">Books</a>
         </li>
+        <br>
         <li>
-            <a href="{% url 'item:category' category=shoes %}" class="h1 ">Shoes</a>
+            <a href="{% url 'item:category' category='shoes' %}" class="h2 button">Shoes</a>
         </li>
+        <br>
         <li>
-            <a href="{% url 'item:category' category=cloths %}" class="h1 ">Cloths</a>
+            <a href="{% url 'item:category' category='cloths' %}" class="h2 button">Cloths</a>
         </li>
+        <br>
         <li>
-            <a href="{% url 'item:category' category=utensils %}" class="h1 ">Utensils</a>
+            <a href="{% url 'item:category' category='utensils' %}" class="h2 button">Utensils</a>
         </li>
+        <br>
         <li>
-            <a href="{% url 'item:category' category=jeweleries %}" class="h1 ">Jeweleries</a>
+            <a href="{% url 'item:category' category='jeweleries' %}" class="h2 button">Jeweleries</a>
         </li>
+        <br>
         <li>
-            <a href="{% url 'item:category' category=phones %}" class="h1 ">Mobile Phones</a>
+            <a href="{% url 'item:category' category='phones' %}" class="h2 button">Mobile Phones</a>
         </li>
+        <br>
         <li>
-            <a href="{% url 'item:category' category=electronics %}" class="h1 ">Electronics</a>
+            <a href="{% url 'item:category' category='electronics' %}" class="h2 button">Electronics</a>
         </li>
+        <br>
         <li>
-            <a href="{% url 'item:category' category=laptops %}" class="h1 ">Laptop Computers</a>
+            <a href="{% url 'item:category' category='laptops' %}" class="h2 button">Laptop Computers</a>
         </li>
+        <br>
         <li>
-            <a href="{% url 'item:category' category=furniture %}" class="h1 ">Furniture</a>
+            <a href="{% url 'item:category' category='furniture' %}" class="h2 button">Furniture</a>
         </li>
+        <br>
         <li>
-            <a href="{% url 'item:category' category=cosmetics %}" class="h1 ">Cosmetics</a>
+            <a href="{% url 'item:category' category='cosmetics' %}" class="h2 button">Cosmetics</a>
         </li>
     </ul>
+</div>
 {% endblock content %}
