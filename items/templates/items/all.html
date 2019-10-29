@@ -59,8 +59,11 @@
                 <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
                 <b>Category: </b>{{ item.category }}<br>
                 <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
-                <b>Interest: </b>{{ item.offer_set.count }}
-                Offer{{ item.offer_set.count|pluralize }}<br>
+                <b>Interest: </b>
+                <strong style="color:#77f;">
+                {{ item.offer_set.count }}
+                Offer{{ item.offer_set.count|pluralize }}
+                </strong><br>
                 <br>
                 <p class="text-right">
                 {% if item.owner == user %}
