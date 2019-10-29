@@ -9,8 +9,8 @@ def create_review(request, form_class, subject, rating):
             review.reviewer = request.user
             review.subject = subject
             review.save()
-            stars = int(review.rating)
-            rating.rate(stars)
+            rating.rate(int(review.rating))
+            rating.save()
             return redirect('review:details', kwargs={'pk': review.pk})
     else:
         return render(request, 'review/create.html',
