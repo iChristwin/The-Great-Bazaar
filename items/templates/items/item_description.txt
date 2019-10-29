@@ -1,4 +1,5 @@
 {% load i18n %}
 **Brand Name:
 **Size Info:
+**Condition: OK
 **Secondhand: yes

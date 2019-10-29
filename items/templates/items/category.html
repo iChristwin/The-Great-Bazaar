@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block title %} Item Categories - {{ block.super }}{% endblock %}
+{% block header %}
+    {{ block.super }}
+{% endblock header %}
+{% block content %}
+    <ul>
+        <li>
+            <a href="{% url 'item:category' category=bags %}" class="h1 ">Bags</a>
+        </li>
+        <li>
+            <a href="{% url 'item:category' category=books %}" class="h1 ">Books</a>
+        </li>
+        <li>
+            <a href="{% url 'item:category' category=shoes %}" class="h1 ">Shoes</a>
+        </li>
+        <li>
+            <a href="{% url 'item:category' category=cloths %}" class="h1 ">Cloths</a>
+        </li>
+        <li>
+            <a href="{% url 'item:category' category=utensils %}" class="h1 ">Utensils</a>
+        </li>
+        <li>
+            <a href="{% url 'item:category' category=jeweleries %}" class="h1 ">Jeweleries</a>
+        </li>
+        <li>
+            <a href="{% url 'item:category' category=phones %}" class="h1 ">Mobile Phones</a>
+        </li>
+        <li>
+            <a href="{% url 'item:category' category=electronics %}" class="h1 ">Electronics</a>
+        </li>
+        <li>
+            <a href="{% url 'item:category' category=laptops %}" class="h1 ">Laptop Computers</a>
+        </li>
+        <li>
+            <a href="{% url 'item:category' category=furniture %}" class="h1 ">Furniture</a>
+        </li>
+        <li>
+            <a href="{% url 'item:category' category=cosmetics %}" class="h1 ">Cosmetics</a>
+        </li>
+    </ul>
+{% endblock content %}

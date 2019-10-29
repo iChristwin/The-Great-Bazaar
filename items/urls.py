@@ -2,7 +2,7 @@ from django.urls import path
 
 # My imports -----------------------------------------------------------------
 from .views import AddItem, ItemInventory, item_home
-from .views import ItemDetails
+from .views import ItemDetails, ItemSort
 from .views import EditItem, RemoveItem
 from .views import ItemReserved, ListItems
 
@@ -15,6 +15,8 @@ urlpatterns = [
     path('search/', ItemSearch.as_view(), name='search'),
 
     path('add/', AddItem.as_view(), name='add'),
+    path('all/', ListItems.as_view(), name='all'),
+    path('<str:category>/', ItemSort.as_view(), name='category'),
     path('inventory/', ItemInventory.as_view(), name='inventory'),
 
     path('<int:pk>/', ItemDetails.as_view(), name='details'),
@@ -23,5 +25,4 @@ urlpatterns = [
     path('<int:pk>/reserved/', ItemReserved.as_view(), name='reserved'),
     path('<int:pk>/interested/', AddOffer.as_view(), name='interested'),
 
-    path('all/', ListItems.as_view(), name='all'),
 ]

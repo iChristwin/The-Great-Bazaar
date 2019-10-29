@@ -19,11 +19,17 @@
                 {% if item.available == False %}
                 <h3 style="font-weight:bold; color: red">**SOLD**</h3>
                 {% endif %}
-                <legend class="h2">{{ item.name }}</legend>
-                <div class="row">
-                    <img src="{{ item.photo_front.url }}" alt="" class="img-rounded img-responsive col-md-6 col-sm-6"/>
-                    <img src="{{ item.photo_back.url }}" alt="" class="img-rounded img-responsive col-md-6 col-sm-6"/>
-                </div>
+                <legend class="h2">
+                    <a href="{% url 'item:details' pk=item.pk %}">
+                        {{ item.name }}
+                    </a>
+                </legend>
+                <a href="{% url 'item:details' pk=item.pk %}">
+                    <div class="row">
+                        <img src="{{ item.photo_front.url }}" alt="" class="img-rounded img-responsive col-md-6 col-sm-6"/>
+                        <img src="{{ item.photo_back.url }}" alt="" class="img-rounded img-responsive col-md-6 col-sm-6"/>
+                    </div>
+                </a>
                 <a href="{% url 'user:details' pk=item.owner.pk %}">
                     <strong style="font-size: 2rem;">Owner</strong><br>
                 </a>
@@ -53,12 +59,6 @@
                 <b>Interest: </b>{{ item.offer_set.count }}
                 Offer{{ item.offer_set.count|pluralize }}<br>
                 <br>
-                <strong style="font-size: 2rem; color: orange">Descriptions</strong>
-                <blockquote class="h5">
-                    {% for line in item.get_description %}
-                        {{ line }}<br>
-                    {% endfor %}
-                </blockquote>
                 <p class="text-right">
                 {% if item.owner == user %}
                     <a class="button" href="{% url 'item:update' pk=item.pk %}">Update</a>

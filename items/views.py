@@ -138,6 +138,15 @@ class ItemInventory(LoginRequiredMixin, ListView):
         return queryset.filter(owner=self.request.user).order_by('-date_added')
 
 
+class ItemSort(ListView):
+    model = Item
+    template_name = 'items/all.html'
+    context_object_name = 'items'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(category=self.kwargs['category']).order_by('-date_added')
+
 # ===================================================================
 
 
