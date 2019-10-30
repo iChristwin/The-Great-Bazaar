@@ -33,24 +33,7 @@
                         <img src="{{ item.photo_back.url }}" alt="" class="img-rounded img-responsive col-md-6 col-sm-6"/>
                     </div>
                 </a>
-                <a href="{% url 'user:details' pk=item.owner.pk %}">
-                    <strong style="font-size: 2rem;">Owner</strong><br>
-                </a>
-                {% if user.is_authenticated and user != item.owner %}
-                <a href="{% url 'bookmark:add' pk=item.pk %}" class="pull-right button h2">
-                    <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> +
-                </a>
-                {% endif %}
-                <span class="glyphicon glyphicon-adjust" aria-hidden="true"></span>
-                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                <b>Rating: </b>{{ item.owner.userrating.current_rating }} Star{{ item.owner.userrating|pluralize }}
-                {% if item.owner.userrating.current_rating == 0.0 %}
-                <small style="color:red;"><strong>New User</strong></small>
-                {% endif %}<br>
-                <text style="font-size: 13px;">
-                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                        <b>Last seen</b>: {{ item.owner.last_login }}
-                </text><br><br>
+                <br><br>
                 <strong style="font-size: 2rem; color: orange">Item</strong><br>
                 {% if user.is_authenticated is False %}
                 <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
@@ -64,7 +47,12 @@
                 {{ item.offer_set.count }}
                 Offer{{ item.offer_set.count|pluralize }}
                 </strong><br>
-                <br>
+                <strong style="font-size: 2rem; color: orange">Descriptions</strong>
+                <blockquote class="h5">
+                    {% for line in item.get_description %}
+                        {{ line }}<br>
+                    {% endfor %}
+                </blockquote>
                 <p class="text-right">
                 {% if item.owner == user %}
                     <a class="button" href="{% url 'item:update' pk=item.pk %}">Update</a>
